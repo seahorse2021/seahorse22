@@ -21,7 +21,7 @@ class LogController extends Controller
     {
         //関数実行、取得した情報を$logに代入
         $logs = Log::getAllOrderByUpdated_at();
-        //一覧ページに取得した$logを渡す
+        //log.indexに取得した$logを渡す
         return view('log.index', [
             'logs' => $logs
         ]);
@@ -34,7 +34,7 @@ class LogController extends Controller
      */
     public function create()
     {
-        //登録ページを表示
+        //log.create（登録ページ）を表示
         return view('log.create');
     }
 
@@ -46,7 +46,6 @@ class LogController extends Controller
      */
     public function store(Request $request)
     {
-
         // バリデーション
         $validator = Validator::make($request->all(), [
             'date' => 'required',
@@ -77,7 +76,6 @@ class LogController extends Controller
      */
     public function show($id)
     {
-        
         //受け取った ID の値でテーブルからデータを取り出して$logに代入
         $log = Log::find($id);
         //$logをlog.showに渡す
@@ -92,7 +90,10 @@ class LogController extends Controller
      */
     public function edit($id)
     {
-        //
+        //log_tableからidが一致しているものを$idに代入
+        $log = Log::find($id);
+        //log.editに取得した$logを渡す
+        return view('log.edit', ['log' => $log]);
     }
 
     /**
@@ -104,7 +105,27 @@ class LogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //バリデーション
+        $validator = Validator::make($request->all(), [
+            'date' => 'required',
+            'dive_site' => 'required',
+            'dive_time' => 'required',
+            'temp' => 'required',
+            'message' => 'required',
+        ]);
+        //バリデーション:エラー
+        if ($validator->fails()) {
+            return redirect()
+                ->route('log.edit', $id)
+                ->withInput()
+                ->withErrors($validator);
+        }
+        //データ更新処理
+        // updateは更新する情報がなくても更新が走る（updated_atが更新される）
+        $result = Log::find($id)->update($request->all());
+        // fill()save()は更新する情報がない場合は更新が走らない（updated_atが更新されない）
+        // $redult = Log::find($id)->fill($request->all())->save();
+        return redirect()->route('log.index');
     }
 
     /**
@@ -115,6 +136,9 @@ class LogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //log_tableからidが一致しているものを削除
+        $result = Log::find($id)->delete();
+        //log.indexへ戻る
+        return redirect()->route('log.index');
     }
 }
