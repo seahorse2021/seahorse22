@@ -19,8 +19,6 @@
                     </div>
                 </a>
                 <div class="flex">
-                    <!-- 更新ボタン -->
-                    <!-- 削除ボタン -->
                 </div>
         @endforeach
     </div>

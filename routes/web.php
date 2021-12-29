@@ -15,10 +15,11 @@ use App\Http\Controllers\LogController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => 'auth'], function () {
+    //Logコントローラーのルート
+    Route::resource('log', LogController::class);
+});
 
-
-//Logコントローラーのルート
-Route::resource('log', LogController::class);
 
 Route::get('/', function () {
     return view('welcome');
