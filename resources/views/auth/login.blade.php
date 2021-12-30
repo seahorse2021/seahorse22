@@ -19,30 +19,32 @@
             <div>
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
+                    autofocus />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" />
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                    autocomplete="current-password" />
             </div>
 
             <!-- Remember Me -->
             <div class="block mt-4">
                 <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                    <input id="remember_me" type="checkbox"
+                        class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                        name="remember">
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                        href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
@@ -51,6 +53,30 @@
                     {{ __('Log in') }}
                 </x-button>
             </div>
+            <hr class="my-3">
+            <p>SNSアカウント</p>
+
+            <a href="/login/google" class="btn btn-google btn-user btn-block">
+                <i class="fab fa-google fa-fw"></i> Google
+            </a>
+            <a href="/login/facebook" class="btn btn-google btn-user btn-block">
+                <i class="fab fa-facebook fa-fw"></i> facebook
+            </a>
+
+            {{-- <button class="bg-gray-500 text-white px-4 py-2 rounded"> --}}
+                <i class="fab fa-github fa-fw"></i>
+                <a href="/login/github" >
+                    Github
+                </a>
+            {{-- </button> --}}
+
         </form>
+        <div class="container mx-auto flex justify-center my-10">
+            <div class="border-2 border-gray-300 p-6 shadow-md rounded-lg">
+                <div>
+                    <p class="text-lg text-gray-600">Hello Tailwindcss</p>
+                </div>
+            </div>
+        </div>
     </x-auth-card>
 </x-guest-layout>

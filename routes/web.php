@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 //Logコントローラーの読み込み
 use App\Http\Controllers\LogController;
+//Loginコントローラーの読み込み
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,11 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+
+Route::get('login/{provider}', [LoginController::class, 'redirectToProvider']);
+
+Route::get('login/{provider}/callback', [LoginController::class, 'handleProviderCallback']);
 
 
 require __DIR__.'/auth.php';
