@@ -6,8 +6,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LogController;
 //Loginコントローラーの読み込み
 use App\Http\Controllers\Auth\LoginController;
-//
+//Favoriteコントローラーの読み込み
 use App\Http\Controllers\FavoriteController;
+//Commentコントローラーの読み込み
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +22,17 @@ use App\Http\Controllers\FavoriteController;
 |
 */
 Route::group(['middleware' => 'auth'], function () {
+
+    //logにfavoritしたルート
+    Route::post('log/{log}/favorites', [FavoriteController::class, 'store'])->name('favorites');
+    //logのfavorit解除のルート
+    Route::post('log/{log}/unfavorites', [FavoriteController::class, 'destroy'])->name('unfavorites');
     //my log へのルート
     Route::get('/log/mypage', [LogController::class, 'mydata'])->name('log.mypage');
     //Logコントローラーのルート
     Route::resource('log', LogController::class);
+    //commentコントローラーのルート
+    Route::resource('comment', CommentController::class);
 });
 
 

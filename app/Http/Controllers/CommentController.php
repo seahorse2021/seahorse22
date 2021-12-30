@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-//Logモデルの読み込み
-use App\Models\Log;
+//Validatorの読み込み
+use Illuminate\Support\Facades\Validator;
 //認証の読み込み
 use Illuminate\Support\Facades\Auth;
+//Logモデルの読み込み
+use App\Models\Log;
+//userモデルの読み込み
+use App\Models\User;
+//Commentモデルの読み込み
+use App\Models\Comment;
 
-
-class FavoriteController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,11 +43,26 @@ class FavoriteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Log $log)
+    public function store(Request $request,Log $log)
     {
-        //中間テーブルへの追加
-        $log->users()->attach(Auth::id());
-        //今まで表示していたページにリダイレクト
+        //dd($log);
+        // バリデーション
+        $validator = Validator::make($request->all(), [
+            'comment' => 'required',
+        ]);
+        // バリデーション:エラー
+        if ($validator->fails()) {
+            return redirect()
+                ->route('log.create')
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        $data = $request->merge(['user_id' => Auth::user()->id])->all();
+        $data = $request->merge(['log_id' => $log->id])->all();
+
+        $result = Comment::create($data);
+
         return back();
     }
 
@@ -86,11 +106,8 @@ class FavoriteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Log $log)
+    public function destroy($id)
     {
-        //中間テーブルからの削除
-        $log->users()->detach(Auth::id());
-        //今まで表示していたページにリダイレクト
-        return back();
+        //
     }
 }

@@ -18,6 +18,35 @@
         <p>message:{{ $log->message }}</p>
     </section>
     <div class="flex">
+        <!-- favorite 状態で条件分岐 -->
+        {{-- 中間テーブルのuser_idとログインユーザーのidが一致するデータを取得 --}}
+        @if($log->users()->where('user_id', Auth::id())->exists())
+        {{-- データがある場合はunfavoriteボタンを表示 --}}
+        <!-- unfavorite ボタン -->
+        <form action="{{ route('unfavorites',$log) }}" method="POST" class="text-left">
+        @csrf
+            <button type="submit" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 focus:outline-none focus:shadow-outline">
+                <svg class="h-6 w-6 text-red-500" fill="red" viewBox="0 0 24 24" stroke="red">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+                {{-- log_users_tableから$logに対応する件数を表示 --}}
+            {{ $log->users()->count() }}
+            </button>
+        </form>
+        {{-- データが無い場合はunfavoriteボタンを表示 --}}
+        @else
+        <!-- favorite ボタン -->
+        <form action="{{ route('favorites',$log) }}" method="POST" class="text-left">
+        @csrf
+            <button type="submit" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-black py-1 px-2 focus:outline-none focus:shadow-outline">
+            <svg class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="black">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+            {{-- log_users_tableから$logに対応する件数を表示 --}}
+            {{ $log->users()->count() }}
+            </button>
+            </form>
+        @endif
 
         {{-- もしlogのuser_idとログイン中のユーザーのidが一致したら削除ボタンと更新ボタンを表示 --}}
         @if ($log->user_id === Auth::user()->id)
@@ -42,5 +71,11 @@
         </form>
         @endif{{-- ボタン表示の条件分岐ここまで--}}
     </div>
+
+    <form method="post" action="{{ route('comment.store',$log)}}">
+        @csrf
+        <input type="text" name="comment">
+            <button>Add</button>
+    </form>
 </body>
 </html>
