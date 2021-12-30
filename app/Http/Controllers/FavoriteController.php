@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+//Logモデルの読み込み
+use App\Models\Log;
+//認証の読み込み
+use Illuminate\Support\Facades\Auth;
+
+
 class FavoriteController extends Controller
 {
     /**
@@ -32,9 +38,12 @@ class FavoriteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Log $log)
     {
-        //
+        //中間テーブルへの追加
+        $log->users()->attach(Auth::id());
+        //今まで表示していたページにリダイレクト
+        return back();
     }
 
     /**
@@ -77,8 +86,11 @@ class FavoriteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Log $log)
     {
-        //
+        //中間テーブルからの削除
+        $log->users()->detach(Auth::id());
+        //今まで表示していたページにリダイレクト
+        return back();
     }
 }
