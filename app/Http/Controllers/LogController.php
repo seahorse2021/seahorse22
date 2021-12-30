@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 
 //Validatorの読み込み
 use Illuminate\Support\Facades\Validator;
+//認証の読み込み
+use Illuminate\Support\Facades\Auth;
 //Logモデルの読み込み
 use App\Models\Log;
-
+//userモデルの読み込み
+use App\Models\User;
 
 class LogController extends Controller
 {
@@ -61,11 +64,19 @@ class LogController extends Controller
                 ->withInput()
                 ->withErrors($validator);
         }
-        // create()は最初から用意されている関数
+
+
+        // 編集 フォームから送信されてきたデータとユーザIDをマージし，DBにinsertする
+        //Auth::user()->idで現在ログインしているユーザの ID を取得することができる
+        //Auth::user()には他にもデータが入っている
+        $data = $request->merge(['user_id' => Auth::user()->id])->all();
         // 戻り値は挿入されたレコードの情報
-        $result = Log::create($request->all());
+        // create()は最初から用意されている関数
+        $result = Log::create($data);
         // ルーティング「log.index」にリクエスト送信（一覧ページに移動）
         return redirect()->route('log.index');
+
+
     }
 
     /**
@@ -140,5 +151,16 @@ class LogController extends Controller
         $result = Log::find($id)->delete();
         //log.indexへ戻る
         return redirect()->route('log.index');
+    }
+
+    public function mydata()
+    {
+        // Userモデルに定義したmylogs関数を実行する．
+        //結果を$logsに受け取る
+        $logs = User::find(Auth::user()->id)->mylogs;
+        //$logをlog.indexに渡す
+        return view('log.index', [
+            'logs' => $logs
+        ]);
     }
 }
