@@ -49,4 +49,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Log::class)->orderBy('updated_at', 'desc');
     }
+
+    //logモデルと多対多の連携をすることを示す
+    public function logs()
+    {
+        return $this->belongsToMany(Log::class)->withTimestamps();
+    }
 }

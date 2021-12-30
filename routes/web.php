@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LogController;
 //Loginコントローラーの読み込み
 use App\Http\Controllers\Auth\LoginController;
+//
+use App\Http\Controllers\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
