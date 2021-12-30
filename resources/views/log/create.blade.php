@@ -21,9 +21,10 @@
                 <th>dive site</th>
                 <td>
                     <select name="dive_site">
+                        <option disabled selected value>ポイントを選択</option>
                         <option value="志賀島 白瀬">志賀島 白瀬</option>
                         <option value="志賀島 黒瀬">志賀島 黒瀬</option>
-                        <option value="辰ノ口">辰ノ口</option>
+                        <option value="長崎 辰ノ口">長崎 辰ノ口</option>
                         <option value="唐津 KMSC前">唐津 KMSC前</option>
                         <option value="呼子 家康">呼子 家康</option>
                     </select>

@@ -19,6 +19,7 @@
         @foreach ($logs as $log)
                 <a href="{{ route('log.show',$log->id) }}">
                     <div>
+                        <p>{{$log->user->name}}</p>
                         <p>{{$log->date}}</p>
                         <p>{{$log->dive_site}}</p>
                     </div>
