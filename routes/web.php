@@ -37,7 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
