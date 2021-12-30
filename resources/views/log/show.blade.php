@@ -47,7 +47,7 @@
             </button>
             </form>
         @endif
-        
+
         {{-- もしlogのuser_idとログイン中のユーザーのidが一致したら削除ボタンと更新ボタンを表示 --}}
         @if ($log->user_id === Auth::user()->id)
         {{-- log.destroyにdeleteメソッドでlog idを送る --}}
@@ -71,5 +71,11 @@
         </form>
         @endif{{-- ボタン表示の条件分岐ここまで--}}
     </div>
+
+    <form method="post" action="{{ route('comment.store',$log)}}">
+        @csrf
+        <input type="text" name="comment">
+            <button>Add</button>
+    </form>
 </body>
 </html>

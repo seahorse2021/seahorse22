@@ -51,6 +51,7 @@ class User extends Authenticatable
     }
 
     //logモデルと多対多の連携をすることを示す
+    //$user->logs
     public function logs()
     {
         return $this->belongsToMany(Log::class)->withTimestamps();

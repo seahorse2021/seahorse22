@@ -25,15 +25,24 @@ class Log extends Model
     }
 
     //ログモデル（子）はUserモデル（親）に属している
+    //$log->user
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
     //Userモデルと多対多の連携をする
+    //$log->users
     public function users()
     {
         return $this->belongsToMany(User::class)->withTimestamps();
+    }
+
+    //$logのidに対してのコメント
+    //$log->comments
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
 }
