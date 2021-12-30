@@ -8,7 +8,12 @@
 </head>
 <body>
     <h1>our log</h1>
+    <a href="{{ route('dashboard')}}">TOPへ</a>
     <a href="{{ route('log.create') }}">create</a>
+    <div>
+        <a href="{{ route('log.index') }}">all log</a>
+        <a href="{{ route('log.mypage') }}">my log</a>
+    </div>
 
     <div>
         @foreach ($logs as $log)
