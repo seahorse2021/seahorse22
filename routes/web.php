@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+//Logコントローラーの読み込み
+use App\Http\Controllers\LogController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(['middleware' => 'auth'], function () {
+    //my log へのルート
+    Route::get('/log/mypage', [LogController::class, 'mydata'])->name('log.mypage');
+    //Logコントローラーのルート
+    Route::resource('log', LogController::class);
+});
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,5 +30,6 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
 
 require __DIR__.'/auth.php';

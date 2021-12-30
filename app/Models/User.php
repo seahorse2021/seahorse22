@@ -41,4 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //自分のuser_idのlogを抽出
+    public function mylogs()
+    {
+        return $this->hasMany(Log::class)->orderBy('updated_at', 'desc');
+    }
 }
