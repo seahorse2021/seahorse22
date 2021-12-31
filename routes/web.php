@@ -21,18 +21,29 @@ use App\Http\Controllers\CommentController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//ユーザー認証されていないと表示ができない設定
 Route::group(['middleware' => 'auth'], function () {
 
     //logにfavoritしたルート
     Route::post('log/{log}/favorites', [FavoriteController::class, 'store'])->name('favorites');
     //logのfavorit解除のルート
     Route::post('log/{log}/unfavorites', [FavoriteController::class, 'destroy'])->name('unfavorites');
+
     //my log へのルート
     Route::get('/log/mypage', [LogController::class, 'mydata'])->name('log.mypage');
     //Logコントローラーのルート
     Route::resource('log', LogController::class);
-    //commentコントローラーのルート
-    Route::resource('comment', CommentController::class);
+
+    //comment storeへのルート
+    Route::post('log/{log}/comment', [CommentController::class,'store'])
+    ->name('comment.store');
+    //comment destroyへのルート
+    Route::delete('comment/{comment}', [CommentController::class,'destroy'])
+    ->name('comment.destroy');
+
+
+
 });
 
 

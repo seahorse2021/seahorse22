@@ -91,6 +91,15 @@ class LogController extends Controller
         $log = Log::find($id);
         //$logをlog.showに渡す
         return view('log.show', ['log' => $log]);
+
+        //Eagerロード練習
+
+        // $log = Log::with(['log','comment','user'])
+        // ->where('log.id',$id)
+        // ->get();
+
+        // return view('log.show', ['log' => $log]);
+
     }
 
     /**

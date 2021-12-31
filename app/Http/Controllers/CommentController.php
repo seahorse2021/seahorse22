@@ -47,16 +47,10 @@ class CommentController extends Controller
     {
         //dd($log);
         // バリデーション
-        $validator = Validator::make($request->all(), [
-            'comment' => 'required',
+        $request->validate([
+            'comment' => 'required'
         ]);
-        // バリデーション:エラー
-        if ($validator->fails()) {
-            return redirect()
-                ->route('log.create')
-                ->withInput()
-                ->withErrors($validator);
-        }
+
 
         $data = $request->merge(['user_id' => Auth::user()->id])->all();
         $data = $request->merge(['log_id' => $log->id])->all();
@@ -106,8 +100,12 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comment $comment)
     {
-        //
+        
+        $comment->delete();
+
+        return redirect()
+            ->route('log.show', $comment->log);
     }
 }

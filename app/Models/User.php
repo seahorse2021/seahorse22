@@ -56,4 +56,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Log::class)->withTimestamps();
     }
+
+    // 投稿者は複数のコメントを持つ。
+    //$user->comments
+    public function comments()
+    {
+        return $this->hasMany(Commment::class);
+    }
 }

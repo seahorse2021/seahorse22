@@ -23,10 +23,10 @@ class Comment extends Model
     }
 
     //コメントモデル（子）はユーザーモデル（親）に属している
-    // $comment->user
+    //$comment->user
     public function user()
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(User::class);
     }
 
 }

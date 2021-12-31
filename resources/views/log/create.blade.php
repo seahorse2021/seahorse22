@@ -7,9 +7,12 @@
     <title>log.create </title>
 </head>
 <body>
+    {{-- ------新規ログの入力画面------- --}}
     <h1>create log</h1>
+    {{-- ログ一覧に戻るボタン --}}
     <a href="{{ route('log.index') }}">back</a>
 
+    {{-- ------入力フォーム-------------- --}}
     <form action="{{ route('log.store') }}" method="POST">
         @csrf
         <table>
@@ -48,6 +51,7 @@
 
         <button>create</button>
     </form>
+    {{-- ------入力フォームここまで-------------- --}}
 
 </body>
 </html>

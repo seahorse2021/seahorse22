@@ -7,9 +7,12 @@
     <title>log.edit</title>
 </head>
 <body>
+    {{-- ------ログの更新（編集）画面------- --}}
     <h1>edit log</h1>
+    {{-- ログ一覧に戻るボタン --}}
     <a href="{{ route('log.index') }}">back</a>
 
+    {{-- ------入力フォーム-------------- --}}
     <form action="{{ route('log.update',$log->id) }}" method="POST">
         @method('put')
         @csrf
@@ -42,6 +45,7 @@
 
         <button>update</button>
     </form>
+    {{-- ------入力フォームここまで-------------- --}}
 
 </body>
 </html>
