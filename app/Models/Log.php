@@ -24,21 +24,21 @@ class Log extends Model
         return self::orderBy('updated_at', 'desc')->get();
     }
 
-    //ログモデル（子）はUserモデル（親）に属している
+    //userモデルのリレーション(多対1)
     //$log->user
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    //Userモデルと多対多の連携をする
+    //Userモデルのリレーション（多対多）
     //$log->users
     public function users()
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
 
-    //$logのidに対してのコメント
+    //Commentモデルのリレーション（一対多）
     //$log->comments
     public function comments()
     {

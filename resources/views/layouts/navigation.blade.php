@@ -4,16 +4,33 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                <div class="shrink-0 flex items-center transform scale-75">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                        <x-application-logo class="scale-50" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Home') }}
+                    </x-nav-link>
+                </div>
+                <!-- Navigation Links -->
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('log.index')" :active="request()->routeIs('log.index')">
+                        {{ __('Logs') }}
+                    </x-nav-link>
+                </div>
+                <!-- Navigation Links -->
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('log.mypage')" :active="request()->routeIs('log.mypage')">
+                        {{ __('My Log') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
+                        {{ __('My Profile') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -65,6 +82,21 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('log.index')" :active="request()->routeIs('log.index')">
+                {{ __('ログ一覧') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('log.mypage')" :active="request()->routeIs('log.mypage')">
+                {{ __('my log') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
+                {{ __('マイプロフィール') }}
             </x-responsive-nav-link>
         </div>
 

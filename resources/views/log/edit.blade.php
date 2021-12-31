@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>log.edit</title>
-</head>
-<body>
+{{-- ヘッダー要素・コンポーネント ⏬⏬--}}
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        {{ __('Edit') }}
+        </h2>
+    </x-slot>
+{{-- ヘッダー要素・コンポーネント ⏫⏫--}}
+
     {{-- ------ログの更新（編集）画面------- --}}
     <h1>edit log</h1>
     {{-- ログ一覧に戻るボタン --}}
@@ -46,6 +46,4 @@
         <button>update</button>
     </form>
     {{-- ------入力フォームここまで-------------- --}}
-
-</body>
-</html>
+</x-app-layout>
