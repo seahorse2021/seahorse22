@@ -10,6 +10,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\FavoriteController;
 //Commentコントローラーの読み込み
 use App\Http\Controllers\CommentController;
+//Profileコントローラーの読み込み
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +44,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('comment/{comment}', [CommentController::class,'destroy'])
     ->name('comment.destroy');
 
-
+    //Profileコントローラーのルート
+    Route::resource('profile', ProfileController::class);
 
 });
 

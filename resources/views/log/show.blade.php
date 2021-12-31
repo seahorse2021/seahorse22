@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>log.show</title>
-</head>
-<body>
+{{-- ヘッダー要素・コンポーネント ⏬⏬--}}
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        {{ __('Detail') }}
+        </h2>
+    </x-slot>
+{{-- ヘッダー要素・コンポーネント ⏫⏫--}}
     {{-- -----ログの中身とコメント表示ページ ---}}
     <h1>log Contents</h1>
     {{-- ログ一覧に戻るボタン --}}
@@ -99,7 +98,7 @@
         @foreach ($log->comments()->latest()->get() as $comment)
             <li>
                 {{ $comment->comment }} {{ $comment->user->name }}
-                
+
                 {{-- もしlogのuser_idとログイン中のユーザーのidが一致したら削除ボタンを表示 --}}
                 @if ($comment->user_id === Auth::user()->id)
                 <form method="post" action="{{ route('comment.destroy',$comment )}}">
@@ -117,5 +116,7 @@
         @endforeach
     </ul>
 {{-- -------投稿コメント表示場所ここまで--------- --}}
-</body>
-</html>
+
+{{-- ヘッダー要素・コンポーネント 閉じタグ⏬⏬--}}
+</x-app-layout>
+{{-- ヘッダー要素・コンポーネント 閉じタグ⏫⏫--}}

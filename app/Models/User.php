@@ -50,14 +50,22 @@ class User extends Authenticatable
         return $this->hasMany(Log::class)->orderBy('updated_at', 'desc');
     }
 
-    //logモデルと多対多の連携をすることを示す
+    //Profileモデルのリレーション（1対1）
+    //$user->profile
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+
+    //logモデルのリレーション（多対多）
     //$user->logs
     public function logs()
     {
         return $this->belongsToMany(Log::class)->withTimestamps();
     }
 
-    // 投稿者は複数のコメントを持つ。
+    // commentモデルのリレーション（1対多）
     //$user->comments
     public function comments()
     {
