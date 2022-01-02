@@ -7,51 +7,52 @@
     </x-slot>
 {{-- ヘッダー要素・コンポーネント ⏫⏫--}}
 
-<h1>Menbers</h1>
+{{-- メンバーのカードランクとダイブ本数の一覧 --}}
 
 <h2>Pro</h2>
-    @foreach ($profiles as $profile)
-        @if($profile->card_rank === 'Pro')
-            <img src="{{ Storage::url($profile->profile_image) }}" class="rounded-full h-12 w-12">
-            
-        @endif
-    @endforeach
+    @forelse ($pro as $x)
+            <img src="{{ Storage::url($x->profile_image) }}" class="rounded-full h-12 w-12">
+    @empty
+        <p>メンバーがいません</p>
+    @endforelse
 
 <h2>DM</h2>
-    @foreach ($profiles as $profile)
-        @if($profile->card_rank === 'DM')
-            <img src="{{ Storage::url($profile->profile_image) }}" class="rounded-full h-12 w-12">
-            <div>{{ $profile->user->name }}</div>
-            <div>ダイブ本数:{{ $profile->dive_count }}</div>
-        @endif
-    @endforeach
+    @forelse ($dm as $x)
+            <img src="{{ Storage::url($x->profile_image) }}" class="rounded-full h-12 w-12">
+            <div>{{ $x->user->name }}</div>
+            <div>ダイブ本数:{{ $x->dive_count }}</div>
+    @empty
+        <p>メンバーがいません</p>
+    @endforelse
 
 <h2>MSD</h2>
-    @foreach ($profiles as $profile)
-        @if($profile->card_rank === 'MSD')
-            <img src="{{ Storage::url($profile->profile_image) }}" class="rounded-full h-12 w-12">
-            <div>{{ $profile->user->name }}</div>
-            <div>ダイブ本数:{{ $profile->dive_count }}</div>
-        @endif
-    @endforeach
+    @forelse ($msd as $x)
+        <img src="{{ Storage::url($x->profile_image) }}" class="rounded-full h-12 w-12">
+        <div>{{ $x->user->name }}</div>
+        <div>ダイブ本数:{{ $x->dive_count }}</div>
+    @empty
+        <p>メンバーがいません</p>
+    @endforelse
 
 <h2>AOW</h2>
-    @foreach ($profiles as $profile)
-        @if($profile->card_rank === 'AOW')
-            <img src="{{ Storage::url($profile->profile_image) }}" class="rounded-full h-12 w-12">
-            <div>{{ $profile->user->name }}</div>
-            <div>ダイブ本数:{{ $profile->dive_count }}</div>
-        @endif
-    @endforeach
+    @forelse ($aow as $x)
+        <img src="{{ Storage::url($x->profile_image) }}" class="rounded-full h-12 w-12">
+        <div>{{ $x->user->name }}</div>
+        <div>ダイブ本数:{{ $x->dive_count }}</div>
+    @empty
+        <p>メンバーがいません</p>
+    @endforelse
 
 <h2>OW</h2>
-    @foreach ($profiles as $profile)
-        @if($profile->card_rank === 'OW')
-            <img src="{{ Storage::url($profile->profile_image) }}" class="rounded-full h-12 w-12">
-            <div>{{ $profile->user->name }}</div>
-            <div>ダイブ本数:{{ $profile->dive_count }}</div>
-        @endif
-    @endforeach
+    @forelse($ow as $x)
+        <img src="{{ Storage::url($x->profile_image) }}" class="rounded-full h-12 w-12">
+        <div>{{ $x->user->name }}</div>
+        <div>ダイブ本数:{{ $x->dive_count }}</div>
+    @empty
+        <p>メンバーがいません</p>
+    @endforelse
+
+{{-- メンバーのカードランクとダイブ本数の一覧ここまで --}}
 
 {{-- ヘッダー要素・コンポーネント 閉じタグ⏬⏬--}}
 </x-app-layout>

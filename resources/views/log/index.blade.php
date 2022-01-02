@@ -2,7 +2,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __("My Log") }}
+        {{ __("All Log") }}
         </h2>
     </x-slot>
 {{-- ヘッダー要素・コンポーネント ⏫⏫--}}
@@ -28,6 +28,7 @@
                         <p>{{$log->date}}</p>
                         {{-- 潜った場所 --}}
                         <p>{{$log->dive_site}}</p>
+                        <p>{{$log->message}}</p>
                     </div>
                 </a>
                 <div class="flex">

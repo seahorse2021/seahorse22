@@ -54,24 +54,19 @@
                 </x-button>
             </div>
             <hr class="my-3">
-            <p>SNS ログイン</p>
-            <div class="w-fit flex- oljustify-center">
-            <a href="/login/google" class="btn btn-google btn-user btn-block">
-                <!-- <i class="fab fa-google fa-fw"></i> Google -->
-                <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" >
-            </a>
-            <a href="/login/facebook" class="btn btn-google btn-user btn-block">
-                <!-- <i class="fab fa-facebook fa-fw"></i> facebook -->
-                <div id="fb-root"></div>
-                <img src="https://scontent.ffuk3-1.fna.fbcdn.net/v/t39.2365-6/17639236_1785253958471956_282550797298827264_n.png?_nc_cat=105&ccb=1-5&_nc_sid=ad8a9d&_nc_ohc=XVExvw7XAO0AX9N3Tum&_nc_ht=scontent.ffuk3-1.fna&oh=00_AT98HTNjJUzbSdHsoO5XIZSxDOPP9zaLB-70m_aZcVSMWA&oe=61D64496" >
-            </a>
-
-
-            <a href="/login/github" class="btn btn-google btn-user btn-block">
-                    <i class="fab fa-github fa-fw"></i>
-                    Github
-            </a>
-
+            <!-- <p>SNS ログイン</p> -->
+            <div class="w-fit flex flex-col justify-center mx-auto ">
+                <a href="/login/google" class="text-center w-60 mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-auto ">
+                    <i class="fab fa-google fa-fw "></i> Googleでログイン
+                    <!-- <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" > -->
+                </a>
+                <a href="/login/facebook" class="text-center  w-60 mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <i class="fab fa-facebook fa-fw"></i> Facebookでログイン
+                    <!-- <img src="https://scontent.ffuk3-1.fna.fbcdn.net/v/t39.2365-6/17639236_1785253958471956_282550797298827264_n.png?_nc_cat=105&ccb=1-5&_nc_sid=ad8a9d&_nc_ohc=XVExvw7XAO0AX9N3Tum&_nc_ht=scontent.ffuk3-1.fna&oh=00_AT98HTNjJUzbSdHsoO5XIZSxDOPP9zaLB-70m_aZcVSMWA&oe=61D64496" > -->
+                </a>
+                <!-- <a href="/login/github" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <i class="fab fa-github fa-fw"></i>Github
+                </a> -->
             </div>
 
 
