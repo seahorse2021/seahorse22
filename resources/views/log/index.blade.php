@@ -8,28 +8,20 @@
 {{-- ヘッダー要素・コンポーネント ⏫⏫--}}
 
     {{-- -----ログの一覧画面----- --}}
-    <h1>our log</h1>
-    {{-- ダッシュボードに戻るボタン --}}
+
+    {{-- ログ追加ボタン --}}
     <x-button class="ml-5">
-        <a href="{{ route('dashboard')}}">TOPへ</a>
+        <a href="{{ route('log.create') }}">create</a>
     </x-button>
 
-    {{-- 新規作成ボタン --}}
-    <a href="{{ route('log.create') }}">create</a>
-    <div>
-        {{-- 一覧表示切り替えボタン --}}
-        <a href="{{ route('log.index') }}">all log</a>
-        {{-- 自分のログへ切り替えボタン --}}
-        <a href="{{ route('log.mypage') }}">my log</a>
-    </div>
-
     {{-- -----一覧表示部分--------- --}}
+
     <div>
         @foreach ($logs as $log)
                 <a href="{{ route('log.show',$log->id) }}">
                     <div>
                         {{-- 投稿した人のプロフィール画像 --}}
-                        <img src="{{ Storage::url($log->user->profile->profile_image) }}">
+                        <img src="{{ Storage::url($log->user->profile->profile_image) }}" class="rounded-full h-16 w-16">
                         {{-- 投稿した人のプロフィール名前 --}}
                         <p>{{$log->user->name}}</p>
                         {{-- ログの日付 --}}
@@ -42,6 +34,7 @@
                 </div>
         @endforeach
     </div>
+
 
     {{-- -----一覧表示部分--------- --}}
 

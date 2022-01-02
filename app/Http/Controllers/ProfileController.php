@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 //Validatorの読み込み
 use Illuminate\Support\Facades\Validator;
 //認証の読み込み
@@ -22,14 +23,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //ログイン中のユーザーIDを取得
-        $login_id = Auth::user()->id;
-        //profle_tableからユーザーidが一致するレコードを取得
-        $profile = Profile::find($login_id);
-        //user_tableからユーザーidが一致するレコードを取得
-        $user = User::find($login_id);
-        //profile.indexに$profileと$userを渡す
-        return view('profile.index', ['profile' => $profile,'user' => $user]);
+        $profiles = Profile::all();
+        return view ('profile.index', ['profiles' => $profiles]);
     }
 
     /**
@@ -56,7 +51,6 @@ class ProfileController extends Controller
         $validator = Validator::make($request->all(), [
             'card_rank' => 'required',
             'dive_count' => 'required',
-            'profile_image' => 'required|file|image',
         ]);
         // バリデーション:エラー
         if ($validator->fails()) {
@@ -65,21 +59,15 @@ class ProfileController extends Controller
                 ->withInput()
                 ->withErrors($validator);
         }
-        //リクエストファイルの画像を取得
-        $upload_image = $request->file('profile_image');
 
-        //画像をpublic直下のuploadsに保存し$pathにパスを取得
-        $path = $upload_image->store('uploads', "public");
+        //DBに保存
+        $result = Profile::create([
+            "card_rank" => $request->card_rank,
+            "dive_count" => $request->dive_count,
+            "profile_image" => 'uploads/null.png',
+            "user_id" => Auth::user()->id
+        ]);
 
-        if ($path) {
-            //DBに保存
-            $result = Profile::create([
-                "card_rank" => $request->card_rank,
-                "dive_count" => $request->dive_count,
-                "profile_image" => $path,
-                "user_id" => Auth::user()->id
-            ]);
-        }
 
         // profile.index」にリクエスト送信（一覧ページに移動）
         return redirect()->route('dashboard');
@@ -108,7 +96,10 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        //写真変更ページを表示する
+        $profile = Profile::find($id);
+        return view('profile.edit', ['profile' => $profile]);
+
     }
 
     /**
@@ -120,7 +111,30 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // バリデーション
+        $validator = Validator::make($request->all(), [
+            'profile_image' => 'required|file|image'
+        ]);
+
+        // バリデーション:エラー
+        if ($validator->fails()) {
+            return redirect()
+                ->route('profile.show', Auth::user()->id)
+                ->withInput()
+                ->withErrors($validator);
+        }
+        //リクエストファイルの画像を取得
+        $upload_image = $request->file('profile_image');
+
+        //画像をpublic直下のuploadsに保存し$pathにパスを取得
+        $path = $upload_image->store('uploads', "public");
+
+        if ($path) {
+        //DBを書き換え
+        $result = Profile::find($id)->update(['profile_image' => $path]);
+        }
+        //profile.showへ移動（現在ログインしているユーザー情報）
+        return redirect()->route('profile.show', Auth::user()->id);
     }
 
     /**

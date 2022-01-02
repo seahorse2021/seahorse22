@@ -45,18 +45,18 @@ class CommentController extends Controller
      */
     public function store(Request $request,Log $log)
     {
-        //dd($log);
         // バリデーション
         $request->validate([
             'comment' => 'required'
         ]);
 
-
+        // 現在ログインしているユーザーのidとログのidをマージ
         $data = $request->merge(['user_id' => Auth::user()->id])->all();
         $data = $request->merge(['log_id' => $log->id])->all();
 
         $result = Comment::create($data);
 
+        // 元のページへ戻る
         return back();
     }
 
@@ -102,9 +102,9 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        
+        //コメント削除のコード
         $comment->delete();
-
+        //ログ詳細ページへ戻る
         return redirect()
             ->route('log.show', $comment->log);
     }

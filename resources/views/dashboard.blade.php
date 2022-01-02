@@ -24,6 +24,10 @@
                     <i>
                         Comming soon...!
                     </i>
+                    <br>
+                    <a href="{{ route('profile.index') }}">メンバー一覧</a>
+                    <br>
+                    <a href="#">ダイブ本数ランキング</a>
                 </div>
             </div>
         </div>

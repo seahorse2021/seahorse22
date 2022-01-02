@@ -23,7 +23,7 @@ class LogController extends Controller
     public function index()
     {
         //関数実行、取得した情報を$logに代入
-        $logs = Log::getAllOrderByUpdated_at();
+        $logs = Log::getAllOrderByDate();
         //log.indexに取得した$logを渡す
         return view('log.index', [
             'logs' => $logs
@@ -53,8 +53,8 @@ class LogController extends Controller
         $validator = Validator::make($request->all(), [
             'date' => 'required',
             'dive_site' => 'required',
-            'dive_time' => 'required',
             'temp' => 'required',
+            'dive_time' => 'required',
             'message' => 'required',
         ]);
         // バリデーション:エラー
@@ -129,8 +129,8 @@ class LogController extends Controller
         $validator = Validator::make($request->all(), [
             'date' => 'required',
             'dive_site' => 'required',
-            'dive_time' => 'required',
             'temp' => 'required',
+            'dive_time' => 'required',
             'message' => 'required',
         ]);
         //バリデーション:エラー

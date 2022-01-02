@@ -18,24 +18,29 @@
         @csrf
         <table>
             <tr>
+                {{-- 日付 --}}
                 <th>date</th>
                 <td><input type="date" name="date" value="{{ $log->date}}"></td>
             </tr>
             <tr>
+                {{-- 潜った場所 --}}
                 <th>dive site</th>
                 <td>
                     <input type="text" name="dive_site" value="{{ $log->dive_site}}">
                 </td>
             </tr>
             <tr>
-                <th>time</th>
-                <td><input type="number" value="50" name="dive_time" value="{{ $log->dive_time}}"></td>
-            </tr>
-            <tr>
+                {{-- 水温 --}}
                 <th>temp</th>
-                <td><input type="number" value="20" name="temp" value="{{ $log->temp}}"></td>
+                <td><input type="number" value="20" name="temp" min="0" value="{{ $log->temp}}"></td>
             </tr>
             <tr>
+                {{-- 潜った時間 --}}
+                <th>time</th>
+                <td><input type="number" value="50" min="0" name="dive_time" value="{{ $log->dive_time}}"></td>
+            </tr>
+            <tr>
+                {{-- コメント --}}
                 <th>comment</th>
                 <td>
                     <textarea name="message">{{ $log->message}}</textarea>
