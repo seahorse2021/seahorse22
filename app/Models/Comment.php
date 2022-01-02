@@ -15,14 +15,14 @@ class Comment extends Model
         'updated_at',
     ];
 
-    //コメントモデル（子）はログモデル（親）に属している
+    //logモデルのリレーションリレーション（多対1）
     // $comment->log
     public function log()
     {
         return $this->belongsTo(Log::class);
     }
 
-    //コメントモデル（子）はユーザーモデル（親）に属している
+    //userモデルのリレーションリレーション（多対1）
     //$comment->user
     public function user()
     {

@@ -13,7 +13,6 @@
 
     {{-- ダッシュボードに戻るボタン --}}
     <a href="{{ route('dashboard') }}">TOPへ</a>
-    <a href="{{ route('profile.create') }}">登録</a>
     {{-- まだ作らない <a href="{{ route('profile.edit',$profile->id) }}">編集</a> --}}
 
     {{-- マイプロフィール表示部分 --}}
@@ -21,7 +20,7 @@
         {{-- プロフィールイメージ --}}
         <img src="{{ Storage::url($profile->profile_image) }}" >
         {{-- ユーザー名 --}}
-        <h1>{{ $user->name }}</h1>
+        <h1>{{ $profile->user->name }}</h1>
 
         <table>
             {{-- カードランク --}}

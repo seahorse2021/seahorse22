@@ -38,7 +38,7 @@ class Log extends Model
         return $this->belongsToMany(User::class)->withTimestamps();
     }
 
-    //Commentモデルのリレーション（一対多）
+    //Commentモデルのリレーション（1対多）
     //$log->comments
     public function comments()
     {

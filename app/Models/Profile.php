@@ -15,11 +15,11 @@ class Profile extends Model
         'updated_at',
     ];
 
-    //Userモデルのリレーション（1対1）
+    //Userモデルのリレーション（userモデルに属する）
     //$profile->user
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
 

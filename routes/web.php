@@ -24,15 +24,15 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-//ユーザー認証されていないと表示ができない設定
+//ユーザー認証されていないと表示されない設定
 Route::group(['middleware' => 'auth'], function () {
 
-    //logにfavoritしたルート
+    //logにfavorit追加のルート
     Route::post('log/{log}/favorites', [FavoriteController::class, 'store'])->name('favorites');
     //logのfavorit解除のルート
     Route::post('log/{log}/unfavorites', [FavoriteController::class, 'destroy'])->name('unfavorites');
 
-    //my log へのルート
+    //my log のルート
     Route::get('/log/mypage', [LogController::class, 'mydata'])->name('log.mypage');
     //Logコントローラーのルート
     Route::resource('log', LogController::class);
@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
     //Profileコントローラーのルート
     Route::resource('profile', ProfileController::class);
 
-});
+});//ユーザー認証ここまで
 
 
 Route::get('/', function () {

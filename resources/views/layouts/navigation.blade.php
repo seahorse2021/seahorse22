@@ -29,7 +29,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
+                    <x-nav-link :href="route('profile.show',Auth::user()->id)" :active="request()->routeIs('profile.index')">
                         {{ __('My Profile') }}
                     </x-nav-link>
                 </div>
@@ -95,7 +95,7 @@
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
+            <x-responsive-nav-link :href="route('profile.show',Auth::user()->id)" :active="request()->routeIs('profile.show')">
                 {{ __('マイプロフィール') }}
             </x-responsive-nav-link>
         </div>
