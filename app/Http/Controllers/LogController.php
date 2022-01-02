@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Log;
 //userモデルの読み込み
 use App\Models\User;
+//pictureモデルの読み込み
+use App\Models\Picture;
 
 class LogController extends Controller
 {
@@ -74,7 +76,7 @@ class LogController extends Controller
         // create()は最初から用意されている関数
         $result = Log::create($data);
         // ルーティング「log.index」にリクエスト送信（一覧ページに移動）
-        return redirect()->route('log.index');
+        return redirect()->route('picture.edit',$result->id);
 
 
     }

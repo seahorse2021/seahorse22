@@ -8,9 +8,6 @@
 {{-- ヘッダー要素・コンポーネント ⏫⏫--}}
 
     {{-- ------新規ログの入力画面------- --}}
-    <h1>create log</h1>
-    {{-- ログ一覧に戻るボタン --}}
-    <a href="{{ route('log.index') }}">back</a>
 
     {{-- ------入力フォーム-------------- --}}
     <form action="{{ route('log.store') }}" method="POST">
@@ -42,9 +39,14 @@
             </tr>
             <tr>
                 {{-- 潜った時間 --}}
-                <th>time</th>
+                <th>time(first dive)</th>
                 <td><input type="number" value="50" min="0" name="dive_time"></td>
             </tr>
+            {{-- <tr id="secound_dive"> --}}
+                {{-- 2本目潜った時間 未実装 --}}
+                {{-- <th>time(second dive)</th> --}}
+                {{-- <td><input type="number" value="50" min="0" name="dive_time"></td> --}}
+            {{-- </tr> --}}
             {{-- コメント --}}
             <tr>
                 <th>comment</th>
@@ -54,8 +56,20 @@
             </tr>
         </table>
 
-        <button>create</button>
+        {{-- <label><input type="checkbox">1ダイブのみ</label> 未実装 --}}
+
+
+
+        <button>登録</button>
     </form>
+
+    {{-- ログ一覧に戻るボタン --}}
+    <a href="{{ route('log.index') }}">back</a>
+
     {{-- ------入力フォームここまで-------------- --}}
+
+    <!-- jquery読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
 </x-app-layout>

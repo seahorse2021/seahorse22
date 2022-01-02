@@ -23,8 +23,21 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $profiles = Profile::all();
-        return view ('profile.index', ['profiles' => $profiles]);
+        //$profiles = Profile::all(); 全て取得
+
+        // カードランクごとにデータ取得
+        $pro = Profile::where('card_rank', 'Pro')->get();
+        $dm = Profile::where('card_rank', 'DM')->get();
+        $msd = Profile::where('card_rank', 'MSD')->get();
+        $aow = Profile::where('card_rank', 'AOW')->get();
+        $ow = Profile::where('card_rank', 'OW')->get();
+        return view ('profile.index', [
+            'pro' => $pro,
+            'dm' => $dm,
+            'msd' => $msd,
+            'aow' => $aow,
+            'ow' => $ow,
+        ]);
     }
 
     /**

@@ -45,4 +45,11 @@ class Log extends Model
         return $this->hasMany(Comment::class);
     }
 
+    //Pictureモデルのリレーション（1対多）
+    //$log->picture
+    public function pictures()
+    {
+        return $this->hasMany(Picture::class);
+    }
+
 }

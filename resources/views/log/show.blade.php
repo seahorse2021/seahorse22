@@ -7,7 +7,7 @@
     </x-slot>
 {{-- ヘッダー要素・コンポーネント ⏫⏫--}}
     {{-- -----ログの中身とコメント表示ページ ---}}
-    <h1>log Contents</h1>
+
     {{-- ログ一覧に戻るボタン --}}
     <a href="{{ route('log.index') }}">back</a>
 
@@ -92,12 +92,12 @@
 
 {{-- -------投稿コメント表示場所--------- --}}
     <h2>commmet</h2>
-    <ul>
+    <div>
         {{-- 繰り返し処理でリストを表示 $log->commetnsで取得可能--}}
         {{-- comments()とすることで条件の指定が可能 --}}
         @foreach ($log->comments()->latest()->get() as $comment)
-            <li>
-                {{ $comment->comment }} {{ $comment->user->name }}
+            <div><img src="{{ Storage::url( $comment->user->profile->profile_image) }}" class="rounded-full h-8 w-8"> {{ $comment->user->name }}</div>
+            <div> {!!  nl2br(e($comment->comment)) !!}</div>
 
                 {{-- もしlogのuser_idとログイン中のユーザーのidが一致したら削除ボタンを表示 --}}
                 @if ($comment->user_id === Auth::user()->id)
@@ -112,10 +112,15 @@
                         </button>
                     </form>
                     @endif{{-- 削除ボタン表示の条件分岐ここまで--}}
-            </li>
+
         @endforeach
-    </ul>
+        </div>
 {{-- -------投稿コメント表示場所ここまで--------- --}}
+
+{{-- もしlogのuser_idとログイン中のユーザーのidが一致したら写真追加ボタンを表示 --}}
+    @if ($log->user_id === Auth::user()->id)
+        <a href="{{ route('picture.create'),$log->id}}">写真を追加</a>
+    @endif{{-- 削除ボタン表示の条件分岐ここまで--}}
 
 {{-- ヘッダー要素・コンポーネント 閉じタグ⏬⏬--}}
 </x-app-layout>

@@ -70,4 +70,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Commment::class);
     }
+
+    //Pictureモデルのリレーション（1対多）
+    //$user->picture
+    public function pictures()
+    {
+        return $this->hasMany(Picture::class);
+    }
 }

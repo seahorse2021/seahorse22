@@ -12,6 +12,8 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\CommentController;
 //Profileコントローラーの読み込み
 use App\Http\Controllers\ProfileController;
+//Profileコントローラーの読み込み
+use App\Http\Controllers\PictureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +48,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Profileコントローラーのルート
     Route::resource('profile', ProfileController::class);
+
+    //Pictureコントローラーのルート
+    Route::resource('picture', PictureController::class);
 
 });//ユーザー認証ここまで
 
