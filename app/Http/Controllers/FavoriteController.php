@@ -42,7 +42,7 @@ class FavoriteController extends Controller
     {
         //中間テーブルへの追加
         $log->users()->attach(Auth::id());
-        //今まで表示していたページにリダイレクト
+        //今まで表示していたページに戻る
         return back();
     }
 
@@ -90,7 +90,7 @@ class FavoriteController extends Controller
     {
         //中間テーブルからの削除
         $log->users()->detach(Auth::id());
-        //今まで表示していたページにリダイレクト
+        //今まで表示していたページに戻る
         return back();
     }
 }

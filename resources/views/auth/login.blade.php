@@ -1,8 +1,8 @@
 <x-guest-layout>
-    <x-auth-card>
+    <x-auth-card class="mb-4">
         <x-slot name="logo">
             <a href="/">
-                <x-login-logo class="w-20 h-20 fill-current text-blue-500" />
+                <x-login-logo class="" />
             </a>
         </x-slot>
 
@@ -12,7 +12,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }} " class="mb-4">
             @csrf
 
             <!-- Email Address -->
@@ -24,7 +24,7 @@
             </div>
 
             <!-- Password -->
-            <div class="mt-4">
+            <div class="">
                 <x-label for="password" :value="__('Password')" />
 
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
@@ -54,72 +54,36 @@
                 </x-button>
             </div>
             <hr class="my-3">
-            <p>SNS</p>
-
+            <p>SNS ログイン</p>
+            <div class="w-fit flex- oljustify-center">
             <a href="/login/google" class="btn btn-google btn-user btn-block">
-                <i class="fab fa-google fa-fw"></i> Google
+                <!-- <i class="fab fa-google fa-fw"></i> Google -->
+                <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" >
             </a>
             <a href="/login/facebook" class="btn btn-google btn-user btn-block">
-                <i class="fab fa-facebook fa-fw"></i> facebook
+                <!-- <i class="fab fa-facebook fa-fw"></i> facebook -->
+                <div id="fb-root"></div>
+                <img src="https://scontent.ffuk3-1.fna.fbcdn.net/v/t39.2365-6/17639236_1785253958471956_282550797298827264_n.png?_nc_cat=105&ccb=1-5&_nc_sid=ad8a9d&_nc_ohc=XVExvw7XAO0AX9N3Tum&_nc_ht=scontent.ffuk3-1.fna&oh=00_AT98HTNjJUzbSdHsoO5XIZSxDOPP9zaLB-70m_aZcVSMWA&oe=61D64496" >
             </a>
 
-            {{-- <button class="bg-gray-500 text-white px-4 py-2 rounded"> --}}
-                <i class="fab fa-github fa-fw"></i>
-                <a href="/login/github" >
+
+            <a href="/login/github" class="btn btn-google btn-user btn-block">
+                    <i class="fab fa-github fa-fw"></i>
                     Github
-                </a>
-            {{-- </button> --}}
+            </a>
+
+            </div>
 
 
-{{-- Google button --}}
-            {{-- <button type="submit" class="
-                    w-full
-                    items-center
-                    block
-                    px-10
-                    py-3.5
-                    text-base
-                    font-medium
-                    text-center text-blue-600
-                    transition
-                    duration-500
-                    ease-in-out
-                    transform
-                    border-2 border-white
-                    shadow-md
-                    rounded-xl
-                    focus:outline-none
-                    focus:ring-2
-                    focus:ring-offset-2
-                    focus:ring-gray-500
-                  ">
-                  <a href="/login/google" class="btn btn-google btn-user btn-block">
-                        <div class="flex items-center justify-center">
-                          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="w-6 h-6" viewBox="0 0 48 48">
-                            <defs>
-                              <path id="a" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"></path>
-                            </defs>
-                            <clipPath id="b">
-                              <use xlink:href="#a" overflow="visible"></use>
-                            </clipPath>
-                            <path clip-path="url(#b)" fill="#FBBC05" d="M0 37V11l17 13z"></path>
-                            <path clip-path="url(#b)" fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z"></path>
-                            <path clip-path="url(#b)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z"></path>
-                            <path clip-path="url(#b)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z"></path>
-                          </svg>
-                          <span class="ml-4"> Log in with Google</span>
-                        </div>
-                    </a>
-                    </button> --}}
 
         </form>
-        <div class="container mx-auto flex justify-center my-10">
-            <div class="border-2 border-gray-300 p-6 shadow-md rounded-lg">
-                <div>
-                    <p class="text-lg text-gray-600">Hello Tailwindcss</p>
-                </div>
-            </div>
+        <div class="w-fit mx-auto">
+             <x-button class="w-60 mx-auto flex">
+                    <a href="{{ route('register') }}" class="mx-auto text-sm text-white-700 dark:text-gray-500">新規登録</a>
+            </x-button>
         </div>
-        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+
+        <!-- <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a> -->
     </x-auth-card>
+
 </x-guest-layout>

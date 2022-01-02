@@ -9,14 +9,13 @@
 
     {{-- -----プロフィールの登録画面----- --}}
     <h1>add profile</h1>
-    {{-- プロフィール画面に戻るボタン --}}
-    <a href="{{ route('profile.index') }}">back</a>
     {{-- -----プロフィール入力フォーム----- --}}
     <form action="{{ route('profile.store') }}" method="post" enctype="multipart/form-data">
         @csrf
 
         <div>
             <p>card rank</p>
+            {{-- カードの種類 --}}
             <select name="card_rank">
                 <option value="Pro">Pro</option>
                 <option value="DM">DM</option>
@@ -27,13 +26,9 @@
         </div>
 
         <div>
+            {{-- 今まで潜った本数 --}}
             <p>dive count</p>
             <input type="number" name="dive_count">
-        </div>
-
-        <div>
-            <input type="file" name="profile_image">
-            {{-- <img src="./img/no_image.png" alt="アップロード画像" id="demo_img"> --}}
         </div>
 
         <button>add</button>

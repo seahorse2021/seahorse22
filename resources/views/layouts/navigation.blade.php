@@ -86,17 +86,17 @@
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('log.index')" :active="request()->routeIs('log.index')">
-                {{ __('ログ一覧') }}
+                {{ __('Logs') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('log.mypage')" :active="request()->routeIs('log.mypage')">
-                {{ __('my log') }}
+                {{ __('My Log') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('profile.show',Auth::user()->id)" :active="request()->routeIs('profile.show')">
-                {{ __('マイプロフィール') }}
+                {{ __('My Profile') }}
             </x-responsive-nav-link>
         </div>
 

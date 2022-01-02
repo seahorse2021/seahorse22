@@ -17,10 +17,12 @@
         @csrf
         <table>
             <tr>
+                {{-- 日付 --}}
                 <th>date</th>
                 <td><input type="date" name="date"></td>
             </tr>
             <tr>
+                {{-- 潜った場所 --}}
                 <th>dive site</th>
                 <td>
                     <select name="dive_site">
@@ -34,13 +36,16 @@
                 </td>
             </tr>
             <tr>
-                <th>time</th>
-                <td><input type="number" value="50" name="dive_time"></td>
+                {{-- 水温 --}}
+                <th>temp</th>
+                <td><input type="number" value="20"  min="0" name="temp"></td>
             </tr>
             <tr>
-                <th>temp</th>
-                <td><input type="number" value="20" name="temp"></td>
+                {{-- 潜った時間 --}}
+                <th>time</th>
+                <td><input type="number" value="50" min="0" name="dive_time"></td>
             </tr>
+            {{-- コメント --}}
             <tr>
                 <th>comment</th>
                 <td>
