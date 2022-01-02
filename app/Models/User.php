@@ -44,10 +44,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    //自分のuser_idのlogを抽出
+    //自分のuser_idのlogを抽出（1対多）
     public function mylogs()
     {
         return $this->hasMany(Log::class)->orderBy('updated_at', 'desc');
+    }
+
+    //logモデルのリレーション（多対多）
+    //$user->logs
+    public function logs()
+    {
+        return $this->belongsToMany(Log::class)->withTimestamps();
     }
 
     //Profileモデルのリレーション（1対1）
@@ -55,14 +62,6 @@ class User extends Authenticatable
     public function profile()
     {
         return $this->hasOne(Profile::class);
-    }
-
-
-    //logモデルのリレーション（多対多）
-    //$user->logs
-    public function logs()
-    {
-        return $this->belongsToMany(Log::class)->withTimestamps();
     }
 
     // commentモデルのリレーション（1対多）

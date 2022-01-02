@@ -94,10 +94,10 @@ class ProfileController extends Controller
     public function show($id)
     {
         //profle_tableからユーザーidが一致するレコードを取得
-        $profile = Profile::find($id);
+        $profile = Profile::where('user_id',$id)->first();
         //profile.indexに$profileと$userを渡す
-        return view('profile.index', ['profile' => $profile]);
-        
+        return view('profile.show', ['profile' => $profile]);
+
     }
 
     /**
