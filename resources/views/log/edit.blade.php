@@ -56,19 +56,36 @@
     </form>
     {{-- ------入力フォームここまで-------------- --}}
 
-    <p id="select_picture">サムネイル変更</p>
+    <button id="select_picture">サムネイル変更</button>
 
-    @foreach ($log->pictures as $picture)
-    <form action="{{ route('picture.change',$picture->id)}}" method="post">
-        @csrf
-        <button>
-            <img src="{{ Storage::url($picture->picture) }}" class="h-48 object-cover">
-        </button>
-    </form>
-    @endforeach
+    <div id="picture_view">
+        @foreach ($log->pictures as $picture)
+        <form action="{{ route('picture.change',$picture->id)}}" method="post">
+            @csrf
+            <button>
+                <img src="{{ Storage::url($picture->picture) }}" class="h-48 object-cover">
+            </button>
+        </form>
+        @endforeach
+    </div>
 
 
     {{-- 戻るボタン --}}
     <a href="{{ route('log.index') }}">back</a>
+
+    <!-- jquery読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+
+        $('#picture_view').hide();
+
+        $('#select_picture').on('click',function(){
+            $('#picture_view').show();
+        })
+
+    </script>
+
+
 
 </x-app-layout>
