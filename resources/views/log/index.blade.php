@@ -28,11 +28,10 @@
                         <p>{{$log->date}}</p>
                         {{-- 潜った場所 --}}
                         <p>{{$log->dive_site}}</p>
-                        <p>{{$log->message}}</p>
+                        <p>{!! nl2br(e($log->message)) !!}</p>
+                        <img src="{{ Storage::url($log->picture) }}" >
                     </div>
                 </a>
-                <div class="flex">
-                </div>
         @endforeach
     </div>
 

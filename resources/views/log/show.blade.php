@@ -17,10 +17,18 @@
         <p>dive site:{{ $log->dive_site }}</p>
         <p>dive time:{{ $log->dive_time }}min</p>
         <p>temp:{{ $log->temp }}℃</p>
-        <p>message:{{ $log->message }}</p>
+        <p>message:{!! nl2br(e($log->message)) !!}</p>
     </section>
     {{-- ------ログの詳細表示部分ここまで----- --}}
 
+
+    {{-- ---------写真表示部分---------------- --}}
+
+    @foreach ($log->pictures as $picture)
+        <img src="{{ Storage::url($picture->picture) }}" class="h-48 object-cover">
+    @endforeach
+
+    {{-- ---------写真表示部分ここまで---------------- --}}
 
     <div class="flex">
     {{-- ------いいねボタン表示部分------------ --}}
@@ -119,8 +127,11 @@
 
 {{-- もしlogのuser_idとログイン中のユーザーのidが一致したら写真追加ボタンを表示 --}}
     @if ($log->user_id === Auth::user()->id)
-        <a href="{{ route('picture.create'),$log->id}}">写真を追加</a>
-    @endif{{-- 削除ボタン表示の条件分岐ここまで--}}
+        <form action="{{ route('picture.edit',$log->id) }}" method="get">
+            <button>写真を追加</button>
+        </form>
+    @endif
+    {{-- 写真追加タン表示の条件分岐ここまで--}}
 
 {{-- ヘッダー要素・コンポーネント 閉じタグ⏬⏬--}}
 </x-app-layout>

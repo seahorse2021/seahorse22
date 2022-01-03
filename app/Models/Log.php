@@ -46,7 +46,7 @@ class Log extends Model
     }
 
     //Pictureモデルのリレーション（1対多）
-    //$log->picture
+    //$log->pictures
     public function pictures()
     {
         return $this->hasMany(Picture::class);
