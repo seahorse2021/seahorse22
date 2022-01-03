@@ -37,7 +37,7 @@
                 <th>temp</th>
                 <td><input type="number" value="20"  min="0" name="temp"></td>
             </tr>
-            <input type="hidden" name="add_dive" value="2">
+            <input type="hidden" name="add_dive" id="add_dive" value="2">
             <tr>
                 {{-- 潜った時間 --}}
                 <th>time(first dive)</th>
@@ -57,7 +57,8 @@
             </tr>
         </table>
 
-        {{-- <label><input type="checkbox">1ダイブのみ</label> 未実装 --}}
+        {{-- 1ダイブのみに切り替えるチェックボックス --}}
+        <label><input type="checkbox" id="one_dive">1ダイブのみ</label>
 
 
 
@@ -71,6 +72,21 @@
 
     <!-- jquery読み込み -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+
+        //1ダイブのみに切り替え
+        $('#one_dive').on('click',function() {
+            if ( $(this).prop('checked')) {
+                $('#secound_dive').hide();
+                $('#add_dive').val(1);
+            } else {
+                $('#secound_dive').show();
+                $('#add_dive').val(2);
+            }
+        })
+
+    </script>
 
 
 </x-app-layout>

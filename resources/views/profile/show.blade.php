@@ -15,7 +15,7 @@
     <section class="md:flex bg-white rounded-lg p-6 text-center my-4 mx-2 drop-shadow-md" id="card">
         {{-- プロフィールイメージ --}}
         <!-- <img src="{{ Storage::url($profile->profile_image) }}" class="rounded-full h-32 w-32"> -->
-        <img src="{{ Storage::url($profile->profile_image) }}" class="h-48 w-48 md:h-100 md:w-100 rounded-full mx-auto md:mx-0 md:mr-6">
+        <img src="{{ Storage::url($profile->profile_image) }}" class="h-48 w-48 md:h-100 md:w-100 rounded-full mx-auto md:mx-0 md:mr-6 object-cover">
         {{-- ユーザー名 --}}
         <h1 class="md:text-left mt-2 mr-2"><b>{{ $profile->user->name }}</b></h1>
 
