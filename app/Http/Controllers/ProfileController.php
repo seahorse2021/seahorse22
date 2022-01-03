@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+//Storegeの読み込み
+use Illuminate\Support\Facades\Storage;
 
 //Validatorの読み込み
 use Illuminate\Support\Facades\Validator;
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 //Profileモデルの読み込み
 use App\Models\Profile;
+
 
 class ProfileController extends Controller
 {
@@ -122,6 +125,8 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //プロフィール写真の変更の関数
     public function update(Request $request, $id)
     {
         // バリデーション
@@ -144,6 +149,10 @@ class ProfileController extends Controller
 
         if ($path) {
         //DBを書き換え
+        $oldpath = Profile::find($id)->profile_image;
+        if($oldpath !== 'uploads/null.png'){
+                Storage::disk('public')->delete($oldpath);
+        }
         $result = Profile::find($id)->update(['profile_image' => $path]);
         }
         //profile.showへ移動（現在ログインしているユーザー情報）
