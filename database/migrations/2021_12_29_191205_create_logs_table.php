@@ -17,9 +17,12 @@ class CreateLogsTable extends Migration
             $table->id();
             $table->date('date');
             $table->string('dive_site');
-            $table->string('dive_time');
+            $table->integer('add_dive');
+            $table->integer('dive_time');
+            $table->integer('dive_time2')->nullable();
             $table->integer('temp');
             $table->string('message');
+            $table->string('thumbnail')->nullable();
             $table->timestamps();
         });
     }

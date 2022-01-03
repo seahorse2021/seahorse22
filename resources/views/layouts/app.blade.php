@@ -12,12 +12,13 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        <div class="flex flex-col h-screen justify-between bg-gradient-to-br from-teal-400 via-blue-500 to-gray-900">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -28,9 +29,13 @@
             </header>
 
             <!-- Page Content -->
-            <main>
+            <main class="mb-auto">
                 {{ $slot }}
             </main>
+
+            @include('components.create_btn')
+
+            @include('layouts.footer')
         </div>
     </body>
 </html>

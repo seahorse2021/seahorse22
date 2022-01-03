@@ -18,10 +18,38 @@ class Log extends Model
         'updated_at',
     ];
 
-    public static function getAllOrderByUpdated_at()
+    public static function getAllOrderByDate()
     {
-        //selfは Logモデルのこと,orderBy()は SQL のものと同じ理解で OK
-        return self::orderBy('updated_at', 'desc')->get();
+        //selfは Logモデルのこと,orderBy()はSQLと同じ
+        return self::orderBy('date', 'desc')->get();
+    }
+
+    //userモデルのリレーション(userモデルに属する)
+    //$log->user
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    //Userモデルのリレーション（多対多）
+    //$log->users
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
+
+    //Commentモデルのリレーション（1対多）
+    //$log->comments
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    //Pictureモデルのリレーション（1対多）
+    //$log->pictures
+    public function pictures()
+    {
+        return $this->hasMany(Picture::class);
     }
 
 }

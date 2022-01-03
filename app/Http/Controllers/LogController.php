@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Log;
 //userモデルの読み込み
 use App\Models\User;
+//Profileモデルの読み込み
+use App\Models\Profile;
+//pictureモデルの読み込み
+use App\Models\Picture;
 
 class LogController extends Controller
 {
@@ -23,7 +27,7 @@ class LogController extends Controller
     public function index()
     {
         //関数実行、取得した情報を$logに代入
-        $logs = Log::getAllOrderByUpdated_at();
+        $logs = Log::getAllOrderByDate();
         //log.indexに取得した$logを渡す
         return view('log.index', [
             'logs' => $logs
@@ -53,8 +57,9 @@ class LogController extends Controller
         $validator = Validator::make($request->all(), [
             'date' => 'required',
             'dive_site' => 'required',
-            'dive_time' => 'required',
             'temp' => 'required',
+            'add_dive' => 'required',
+            'dive_time' => 'required',
             'message' => 'required',
         ]);
         // バリデーション:エラー
@@ -73,8 +78,12 @@ class LogController extends Controller
         // 戻り値は挿入されたレコードの情報
         // create()は最初から用意されている関数
         $result = Log::create($data);
+
+        $profile = Profile::find($result->user_id);
+        $profile->increment('dive_count', $request->add_dive);
+        
         // ルーティング「log.index」にリクエスト送信（一覧ページに移動）
-        return redirect()->route('log.index');
+        return redirect()->route('picture.edit',$result->id);
 
 
     }
@@ -91,6 +100,15 @@ class LogController extends Controller
         $log = Log::find($id);
         //$logをlog.showに渡す
         return view('log.show', ['log' => $log]);
+
+        //Eagerロード練習
+
+        // $log = Log::with(['log','comment','user'])
+        // ->where('log.id',$id)
+        // ->get();
+
+        // return view('log.show', ['log' => $log]);
+
     }
 
     /**
@@ -120,8 +138,8 @@ class LogController extends Controller
         $validator = Validator::make($request->all(), [
             'date' => 'required',
             'dive_site' => 'required',
-            'dive_time' => 'required',
             'temp' => 'required',
+            'dive_time' => 'required',
             'message' => 'required',
         ]);
         //バリデーション:エラー

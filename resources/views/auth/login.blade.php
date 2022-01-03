@@ -1,8 +1,8 @@
 <x-guest-layout>
-    <x-auth-card>
+    <x-auth-card class="mb-4">
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <x-login-logo class="" />
             </a>
         </x-slot>
 
@@ -12,7 +12,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }} " class="mb-4">
             @csrf
 
             <!-- Email Address -->
@@ -24,7 +24,7 @@
             </div>
 
             <!-- Password -->
-            <div class="mt-4">
+            <div class="">
                 <x-label for="password" :value="__('Password')" />
 
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
@@ -54,29 +54,31 @@
                 </x-button>
             </div>
             <hr class="my-3">
-            <p>SNSアカウント</p>
-
-            <a href="/login/google" class="btn btn-google btn-user btn-block">
-                <i class="fab fa-google fa-fw"></i> Google
-            </a>
-            <a href="/login/facebook" class="btn btn-google btn-user btn-block">
-                <i class="fab fa-facebook fa-fw"></i> facebook
-            </a>
-
-            {{-- <button class="bg-gray-500 text-white px-4 py-2 rounded"> --}}
-                <i class="fab fa-github fa-fw"></i>
-                <a href="/login/github" >
-                    Github
+            <!-- <p>SNS ログイン</p> -->
+            <div class="w-fit flex flex-col justify-center mx-auto ">
+                <a href="/login/google" class="text-center w-60 mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-auto ">
+                    <i class="fab fa-google fa-fw "></i> Googleでログイン
+                    <!-- <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" > -->
                 </a>
-            {{-- </button> --}}
+                <a href="/login/facebook" class="text-center  w-60 mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <i class="fab fa-facebook fa-fw"></i> Facebookでログイン
+                    <!-- <img src="https://scontent.ffuk3-1.fna.fbcdn.net/v/t39.2365-6/17639236_1785253958471956_282550797298827264_n.png?_nc_cat=105&ccb=1-5&_nc_sid=ad8a9d&_nc_ohc=XVExvw7XAO0AX9N3Tum&_nc_ht=scontent.ffuk3-1.fna&oh=00_AT98HTNjJUzbSdHsoO5XIZSxDOPP9zaLB-70m_aZcVSMWA&oe=61D64496" > -->
+                </a>
+                <!-- <a href="/login/github" class="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <i class="fab fa-github fa-fw"></i>Github
+                </a> -->
+            </div>
+
+
 
         </form>
-        <div class="container mx-auto flex justify-center my-10">
-            <div class="border-2 border-gray-300 p-6 shadow-md rounded-lg">
-                <div>
-                    <p class="text-lg text-gray-600">Hello Tailwindcss</p>
-                </div>
-            </div>
+        <div class="w-fit mx-auto">
+             <x-button class="w-60 mx-auto flex">
+                    <a href="{{ route('register') }}" class="mx-auto text-sm text-white-700 dark:text-gray-500">新規登録</a>
+            </x-button>
         </div>
+
+        <!-- <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a> -->
     </x-auth-card>
+
 </x-guest-layout>
