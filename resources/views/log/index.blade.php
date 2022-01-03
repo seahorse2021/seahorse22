@@ -1,8 +1,8 @@
 {{-- ヘッダー要素・コンポーネント ⏬⏬--}}
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __("All Log") }}
+        <h2 class="font-semibold text-xl bg-clip-text text-transparent bg-gradient-to-br from-teal-400 via-blue-500 to-gray-900 leading-tight">
+        {{ __("All Logs") }}
         </h2>
     </x-slot>
 {{-- ヘッダー要素・コンポーネント ⏫⏫--}}
@@ -67,12 +67,12 @@
                     <p>{!! nl2br(e($log->message)) !!}</p>
                 </div>
             </div>
-            <div class="text-sm mb-2 text-gray-400 cursor-pointer font-medium">View all 14 comments</div>
+            {{-- <div class="text-sm mb-2 text-gray-400 cursor-pointer font-medium">View all 14 comments</div>
                 <div class="mb-2">
                     <div class="mb-2 text-sm">
                     <span class="font-medium mr-2">razzle_dazzle</span> Dude! How cool! I went to New Zealand last summer and had a blast taking the tour! So much to see! Make sure you bring a good camera when you go!
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     </a>
