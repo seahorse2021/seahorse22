@@ -37,16 +37,16 @@
                 <th>temp</th>
                 <td><input type="number" value="20"  min="0" name="temp"></td>
             </tr>
+            <input type="hide" name="add_dive" value="2">
             <tr>
                 {{-- 潜った時間 --}}
                 <th>time(first dive)</th>
                 <td><input type="number" value="50" min="0" name="dive_time"></td>
             </tr>
-            {{-- <tr id="secound_dive"> --}}
-                {{-- 2本目潜った時間 未実装 --}}
-                {{-- <th>time(second dive)</th> --}}
-                {{-- <td><input type="number" value="50" min="0" name="dive_time"></td> --}}
-            {{-- </tr> --}}
+            <tr id="secound_dive">
+                <th>time(second dive)</th>
+                <td><input type="number" value="50" min="0" name="dive_time2"></td>
+            </tr>
             {{-- コメント --}}
             <tr>
                 <th>comment</th>
