@@ -29,7 +29,11 @@
                         {{-- 潜った場所 --}}
                         <p>{{$log->dive_site}}</p>
                         <p>{!! nl2br(e($log->message)) !!}</p>
-                        <img src="{{ Storage::url($log->picture) }}" >
+                        @if($log->thumbnail)
+                        <img src="{{ Storage::url($log->thumbnail) }}" class="h-48 object-cover">
+                        @else
+                        <img src="{{ Storage::url('uploads/no_image.png') }}" class="h-48 object-cover">
+                        @endif
                     </div>
                 </a>
         @endforeach

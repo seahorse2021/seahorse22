@@ -56,6 +56,7 @@ class LogController extends Controller
             'date' => 'required',
             'dive_site' => 'required',
             'temp' => 'required',
+            'add_dive' => 'required',
             'dive_time' => 'required',
             'message' => 'required',
         ]);

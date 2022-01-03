@@ -91,15 +91,15 @@
     </div>
 
 {{-- -------コメント入力欄------ --}}
+<h2>commmet</h2>
     <form method="post" action="{{ route('comment.store', $log ) }}">
         @csrf
-        <input type="text" name="comment">
+        <textarea name="comment"></textarea>
             <button>Add</button>
     </form>
 {{-- -------コメント入力欄ここまで------ --}}
 
 {{-- -------投稿コメント表示場所--------- --}}
-    <h2>commmet</h2>
     <div>
         {{-- 繰り返し処理でリストを表示 $log->commetnsで取得可能--}}
         {{-- comments()とすることで条件の指定が可能 --}}
