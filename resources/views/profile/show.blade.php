@@ -10,8 +10,6 @@
 
     {{-- -----マイプロフィール画面----- --}}
 
-    {{-- ダッシュボードに戻るボタン --}}
-    <!-- <a href="{{ route('dashboard') }}">TOPへ</a> -->
     {{-- マイプロフィール表示部分 --}}
     <div class="flex flex-col" >
     <section class="md:flex bg-white rounded-lg p-6 text-center my-4 mx-2 drop-shadow-md" id="card">
@@ -26,19 +24,27 @@
             <tr class="flex flex-col w-300 h-300 bg-white" >
                 <td>CARD RANK:</td>
                 <td><b class="text-3xl">{{ $profile->card_rank }}</b></td>
-            </tr">
-
-            {{-- ダイブ本数 --}}
-            <tr class="flex flex-col">
-                <td>DIVE COUNT:</td>
-                <td><b class="text-3xl">{{ $profile->dive_count }}</b></td>
             </tr>
+
+            {{-- ダイブ本数 ランクProの場合は表示しない--}}
+            @if($profile->card_rank === 'Pro')
+            @else
+                <tr class="flex flex-col">
+                    <td>DIVE COUNT:</td>
+                    <td><b class="text-3xl">{{ $profile->dive_count }}</b></td>
+                </tr>
+            @endif
+
         </table>
     </section>
+    {{-- マイプロフィール表示部分ここまで --}}
+
     {{-- profile.edit プロフィール写真変更ページへのリンク --}}
+    @if ($profile->user_id === Auth::user()->id)
         <form action="{{ route('profile.edit',$profile->id)  }}" method="get" class="mx-auto">
             <x-button>プロフィール画像変更</x-button>
         </form>
+    @endif
 
 </div>
 <script src="{{ mix('js/vanilla-tilt.js') }}"></script>

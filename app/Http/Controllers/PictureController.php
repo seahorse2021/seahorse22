@@ -64,6 +64,8 @@ class PictureController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     //画像追加画面へ
     public function edit($id)
     {
         $log = Log::find($id);
@@ -77,6 +79,8 @@ class PictureController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+     //画像追加処理
     public function update(Request $request, $id)
     {
 
@@ -100,7 +104,7 @@ class PictureController extends Controller
         $path = $upload_image->store('uploads', "public");
 
         if ($path) {
-            // 現在ログインしているユーザーのidとログのidをマージ
+            // DBに登録
             $result = Picture::create([
                 "picture" => $path,
                 "user_id" => Auth::user()->id,
@@ -108,11 +112,16 @@ class PictureController extends Controller
             ]);
         }
 
+        //サムネイルの登録
+        //idが一致するログのレコードを取得
+        $log = Log::find($id);
+        //サムネイルがnullだったら$pathを登録
+        if($log->thumbnail == null){
+            $log->thumbnail = $path;
+            $log->save();
+        }
         //profile.showへ移動（現在ログインしているユーザー情報）
         return redirect()->route('picture.edit', $id);
-
-
-
     }
 
     /**
@@ -124,5 +133,14 @@ class PictureController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function change($id)
+    {
+        //サムネイル変更の関数
+        $picture = Picture::find($id);
+        $result = Log::find($picture->log_id)->update(['thumbnail' => $picture->picture]);
+
+        return redirect()->route('log.show',$picture->log_id);
     }
 }

@@ -57,6 +57,9 @@ Route::group(['middleware' => 'auth'], function () {
     //Profileコントローラーのルート
     Route::resource('profile', ProfileController::class);
 
+    //サムネイル変更のルート
+    Route::post('picture/{picture}/change', [PictureController::class,'change'])
+    ->name('picture.change');
     //Pictureコントローラーのルート
     Route::resource('picture', PictureController::class);
 

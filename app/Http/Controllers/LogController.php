@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Log;
 //userモデルの読み込み
 use App\Models\User;
+//Profileモデルの読み込み
+use App\Models\Profile;
 //pictureモデルの読み込み
 use App\Models\Picture;
 
@@ -76,6 +78,10 @@ class LogController extends Controller
         // 戻り値は挿入されたレコードの情報
         // create()は最初から用意されている関数
         $result = Log::create($data);
+
+        $profile = Profile::find($result->user_id);
+        $profile->increment('dive_count', $request->add_dive);
+        
         // ルーティング「log.index」にリクエスト送信（一覧ページに移動）
         return redirect()->route('picture.edit',$result->id);
 
