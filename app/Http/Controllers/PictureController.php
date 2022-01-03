@@ -43,11 +43,9 @@ class PictureController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Log $log)
+    public function store(Request $request)
     {
         //
-
-        dd($log);
     }
 
     /**
@@ -60,16 +58,16 @@ class PictureController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($log_id)
+    public function edit($id)
     {
-        return view ('picture.edit',$log_id);
+        $log = Log::find($id);
+        return view ('picture.edit', ['log' => $log]);
     }
 
     /**
@@ -81,7 +79,40 @@ class PictureController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        // バリデーション
+        $validator = Validator::make($request->all(), [
+            'picture' => 'required|file|image'
+        ]);
+
+        // バリデーション:エラー
+        if ($validator->fails()) {
+            return redirect()
+                ->route('picture.edit', $id)
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        //リクエストファイルの画像を取得
+        $upload_image = $request->file('picture');
+
+        //画像をpublic直下のuploadsに保存し$pathにパスを取得
+        $path = $upload_image->store('uploads', "public");
+
+        if ($path) {
+            // 現在ログインしているユーザーのidとログのidをマージ
+            $result = Picture::create([
+                "picture" => $path,
+                "user_id" => Auth::user()->id,
+                "log_id" => $id,
+            ]);
+        }
+
+        //profile.showへ移動（現在ログインしているユーザー情報）
+        return redirect()->route('picture.edit', $id);
+
+
+
     }
 
     /**

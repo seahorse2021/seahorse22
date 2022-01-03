@@ -15,12 +15,13 @@
 
         <div>
             {{-- 入力フォーム --}}
-            <form action="#" method="post" enctype="multipart/form-data">
+            <form action="{{ route('profile.update',$profile->id) }}" method="post" enctype="multipart/form-data">
+                @method('patch')
                 @csrf
                 {{-- プレビュー表示場所 --}}
                 <img src="{{ Storage::url($profile->profile_image) }}" id="demo_img" class="rounded-full h-48 w-48">
                 {{-- ファイル選択欄 --}}
-                <input type="file" name="picture" id="log_picture">
+                <input type="file" name="profile_image" id="profile_image">
                 {{-- 変更ボタン --}}
                 <button>変更</button>
             </form>
@@ -32,7 +33,7 @@
 
 {{-- プロフィール写真が選択されたらプレビューを表示 --}}
 <script>
-    $('#log_picture').on('change', function (e) {
+    $('#profile_image').on('change', function (e) {
         var reader = new FileReader();
         reader.onload = function (e) {
         $("#demo_img").attr('src', e.target.result);

@@ -29,6 +29,14 @@ use App\Http\Controllers\PictureController;
 //ユーザー認証されていないと表示されない設定
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::get('/', function () {
+        return view('dashboard');
+    });
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
     //logにfavorit追加のルート
     Route::post('log/{log}/favorites', [FavoriteController::class, 'store'])->name('favorites');
     //logのfavorit解除のルート
@@ -54,14 +62,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 });//ユーザー認証ここまで
 
-
-Route::get('/', function () {
-    return view('auth.login');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 
 Route::get('login/{provider}', [LoginController::class, 'redirectToProvider']);
