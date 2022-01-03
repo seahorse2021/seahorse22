@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 leading-tight">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
@@ -22,7 +22,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="font-extrabold ...">
-                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
+                        <span class="">
                             <i>Comming soon...!</i>
                         </span>
                     </div>

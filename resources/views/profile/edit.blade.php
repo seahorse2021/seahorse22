@@ -19,7 +19,7 @@
                 @method('patch')
                 @csrf
                 {{-- プレビュー表示場所 --}}
-                <img src="{{ Storage::url($profile->profile_image) }}" id="demo_img" class="rounded-full h-48 w-48">
+                <img src="{{ Storage::url($profile->profile_image) }}" id="demo_img" class="rounded-full h-48 w-48 object-cover" >
                 {{-- ファイル選択欄 --}}
                 <input type="file" name="profile_image" id="profile_image">
                 {{-- 変更ボタン --}}
