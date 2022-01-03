@@ -54,6 +54,7 @@ class CommentController extends Controller
         $data = $request->merge(['user_id' => Auth::user()->id])->all();
         $data = $request->merge(['log_id' => $log->id])->all();
 
+        //DB保存
         $result = Comment::create($data);
 
         // 元のページへ戻る

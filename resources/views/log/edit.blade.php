@@ -8,9 +8,6 @@
 {{-- ヘッダー要素・コンポーネント ⏫⏫--}}
 
     {{-- ------ログの更新（編集）画面------- --}}
-    <h1>edit log</h1>
-    {{-- ログ一覧に戻るボタン --}}
-    <a href="{{ route('log.index') }}">back</a>
 
     {{-- ------入力フォーム-------------- --}}
     <form action="{{ route('log.update',$log->id) }}" method="POST">
@@ -36,9 +33,16 @@
             </tr>
             <tr>
                 {{-- 潜った時間 --}}
-                <th>time</th>
+                <th>time(first dive)</th>
                 <td><input type="number" value="50" min="0" name="dive_time" value="{{ $log->dive_time}}"></td>
             </tr>
+            @if($log->dive_time2)
+            <tr>
+                {{-- 潜った時間 --}}
+                <th>time(second dive)</th>
+                <td><input type="number" value="50" min="0" name="dive_time2" value="{{ $log->dive_time2}}"></td>
+            </tr>
+            @endif
             <tr>
                 {{-- コメント --}}
                 <th>comment</th>
@@ -48,7 +52,23 @@
             </tr>
         </table>
 
-        <button>update</button>
+        <button>更新</button>
     </form>
     {{-- ------入力フォームここまで-------------- --}}
+
+    <p id="select_picture">サムネイル変更</p>
+
+    @foreach ($log->pictures as $picture)
+    <form action="{{ route('picture.change',$picture->id)}}" method="post">
+        @csrf
+        <button>
+            <img src="{{ Storage::url($picture->picture) }}" class="h-48 object-cover">
+        </button>
+    </form>
+    @endforeach
+
+
+    {{-- 戻るボタン --}}
+    <a href="{{ route('log.index') }}">back</a>
+
 </x-app-layout>
