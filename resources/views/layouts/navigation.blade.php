@@ -19,7 +19,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('log.index')" :active="request()->routeIs('log.index')">
-                        {{ __('Logs') }}
+                        {{ __('All Logs') }}
                     </x-nav-link>
                 </div>
                 <!-- Navigation Links -->
@@ -91,7 +91,7 @@
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('log.index')" :active="request()->routeIs('log.index')">
-                {{ __('Logs') }}
+                {{ __('All Logs') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">

@@ -42,7 +42,7 @@
     {{-- profile.edit プロフィール写真変更ページへのリンク --}}
     @if ($profile->user_id === Auth::user()->id)
         <form action="{{ route('profile.edit',$profile->id)  }}" method="get" class="mx-auto">
-            <x-button>プロフィール画像変更</x-button>
+            <x-button class="my-2">プロフィール画像変更</x-button>
         </form>
     @endif
 
