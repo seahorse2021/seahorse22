@@ -50,7 +50,9 @@
                     </div> --}}
 
                     <div>
-                        <a href="#">生物図鑑</a>
+                        <a href="#">図鑑作成</a><br>
+                        <a href="#">水温グラフ</a><br>
+                        <a href="#">器材登録</a><br>
                     </div>
 
                 </div>
