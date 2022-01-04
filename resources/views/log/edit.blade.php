@@ -58,7 +58,8 @@
 
     <button id="select_picture">サムネイル変更</button>
 
-    <div id="picture_view">
+    <div id="thumbnail_view">
+        <p>一覧画面に表示する画像を選択してください</p>
         @foreach ($log->pictures as $picture)
         <form action="{{ route('picture.change',$picture->id)}}" method="post">
             @csrf
@@ -67,6 +68,24 @@
             </button>
         </form>
         @endforeach
+    </div>
+
+    <button id="delete_picture">写真を削除</button>
+
+    <div id="delete_view">
+
+        <p>削除する画像を選んでください</p>
+
+        @foreach ($log->pictures as $picture)
+        <form action="{{ route('picture.destroy',$picture->id ) }}" method="post">
+            @method('DELETE')
+            @csrf
+            <button>
+                <img src="{{ Storage::url($picture->picture) }}" class="h-48 object-cover">
+            </button>
+        </form>
+        @endforeach
+
     </div>
 
 
@@ -78,10 +97,18 @@
 
     <script>
 
-        $('#picture_view').hide();
+        //一覧画面は消しておく
+        $('#thumbnail_view').hide();
+        $('#delete_view').hide();
 
+        //サムネイル変更をクリックすると登録写真一覧を表示
         $('#select_picture').on('click',function(){
-            $('#picture_view').show();
+            $('#thumbnail_view').show();
+        })
+
+        //写真を削除をクリックすると登録写真一覧を表示
+        $('#delete_picture').on('click',function(){
+            $('#delete_view').show();
         })
 
     </script>

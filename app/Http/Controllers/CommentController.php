@@ -43,6 +43,8 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    //コメント投稿の関数
     public function store(Request $request,Log $log)
     {
         // バリデーション
@@ -101,6 +103,8 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //コメント削除の関数
     public function destroy(Comment $comment)
     {
         //コメント削除のコード

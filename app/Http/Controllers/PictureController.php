@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+//Storegeの読み込み
+use Illuminate\Support\Facades\Storage;
+
 //Validatorの読み込み
 use Illuminate\Support\Facades\Validator;
 //認証の読み込み
@@ -130,14 +133,30 @@ class PictureController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //ログの画像を削除する関数
     public function destroy($id)
     {
-        //
+        //picture_tableからidが一致しているものを取得（画像パス）
+        $pic = Picture::find($id);
+
+        //削除する画像がサムネイルの場合はサムネイルのパスを変更
+        if($pic->picture == $pic->log->thumbnail){
+            Log::find($pic->log_id)->update(['thumbnail' => 'uploads/no_image.png']);
+        }
+
+        //ストレージから画像を削除
+        Storage::disk('public')->delete($pic->picture);
+
+        //picture_tableからもid削除
+        $result = Picture::find($id)->delete();
+        //元のページへ戻る
+        return redirect()->back();
     }
 
+    //サムネイル変更の関数
     public function change($id)
     {
-        //サムネイル変更の関数
         $picture = Picture::find($id);
         $result = Log::find($picture->log_id)->update(['thumbnail' => $picture->picture]);
 
