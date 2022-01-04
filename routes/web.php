@@ -54,6 +54,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('comment/{comment}', [CommentController::class,'destroy'])
     ->name('comment.destroy');
 
+    //profile.rankingへのルート
+    Route::get('profile/ranking', [ProfileController::class,'ranking'])
+    ->name('profile.ranking');
+
     //Profileコントローラーのルート
     Route::resource('profile', ProfileController::class);
 

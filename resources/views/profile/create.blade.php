@@ -8,9 +8,11 @@
 {{-- ヘッダー要素・コンポーネント ⏫⏫--}}
 
     {{-- -----プロフィールの登録画面----- --}}
-    <h1>add profile</h1>
+        <div class="flex justify-center">
+    <div class="px-2 mx-2 my-4 rounded-lg shadow-lg bg-white max-w-sm w-full">
+    <h1 class="text-lg font-bold">add profile</h1>
     {{-- -----プロフィール入力フォーム----- --}}
-    <form action="{{ route('profile.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('profile.store') }}" method="post" enctype="multipart/form-data" class="pb-5">
         @csrf
 
         <div>
@@ -25,14 +27,17 @@
             </select>
         </div>
 
-        <div>
+        <div class="my-2">
             {{-- 今まで潜った本数 --}}
             <p>dive count</p>
             <input type="number" name="dive_count">
         </div>
 
-        <button>add</button>
+        <x-button class="mb-3">add</x-button>
     </form>
+
+    </div>
+</div>
     {{-- -----プロフィール入力フォームここまで----- --}}
 
 </x-app-layout>
