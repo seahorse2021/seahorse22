@@ -20,7 +20,7 @@
             {{-- プレビュー表示場所 --}}
             <img src="{{ Storage::url('uploads/no_image.png') }}" id="demo_picture" class="h-48 object-cover">
         {{-- 登録ボタン --}}
-        <button>登録</button>
+        <x-button >登録</x-button>
     </form>
     {{-- 入力フォームここまで --}}
 </div>
