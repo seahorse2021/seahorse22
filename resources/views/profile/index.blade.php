@@ -70,7 +70,7 @@
     @empty
         <p>メンバーがいません</p>
     @endforelse
-<header class="mt-2 mx-2 px-5 py-4 border-b border-t border-gray-100 bg-gradient-to-r from-blue-700 to-inherit text-white font-bold rounded-xl drop-shadow-md">
+<header class="mt-2 mx-2 px-5 py-4 border-b border-t border-gray-100 bg-gradient-to-r from-blue-700 to-blue-300 text-white font-bold rounded-xl drop-shadow-md">
 <h2>OW</h2>
 </header>
     @forelse($ow as $x)
