@@ -18,7 +18,7 @@
 
     @foreach ($logs as $log)
     <a href="{{ route('log.show',$log->id) }}">
-    <div class="flex rounded-lg overflow-hidden border  lg:w-4/12 md:w-4/12 bg-white mx-3 md:mx-0 lg:mx-0 my-5">
+    <div class="h-40 flex rounded-lg overflow-hidden border  lg:w-4/12 md:w-4/12 bg-white mx-3 md:mx-0 lg:mx-0 my-5">
         <div class="w-full flex flex-col justify-between p-4">
             <div class="flex">
                 <div class="rounded-full h-8 w-8 bg-gray-500 flex items-center justify-center overflow-hidden">
@@ -34,18 +34,18 @@
                             <p>{{$log->dive_site}}</p>
                         <p>{!! nl2br(e($log->message)) !!}</p>
                     </div>
-                    <p class="mt-2">more＞</p>
+                    <!-- <p class="mt-2">more＞</p> -->
                 </div>
             </div>
         </div>
 
         @if($log->thumbnail)
-        <div class="flex-none w-80 mb-10 relative z-10 before:absolute before:top-1 before:left-1 before:w-full before:h-full before:bg-teal-400">
+        <div class="h-40 w-36 flex-none mb-10 relative">
             <img class="z-10 w-full h-full object-cover rounded-r-lg" src="{{ Storage::url($log->thumbnail) }}">
         </div>
         @else
-        <div class="flex-none w-48 mb-10 relative z-10 before:absolute before:top-1 before:left-1 before:w-full before:h-full before:bg-teal-400">
-            <img class="z-10 w-full h-full object-cover rounded-lg" src="{{ Storage::url('uploads/no_image.png') }}">
+        <div class="h-40 w-36 flex-none mb-10 relative ">
+            <img class="z-10 w-full h-full object-cover rounded-r-lg" src="{{ Storage::url('uploads/no_image.png') }}">
         </div>
         @endif
 

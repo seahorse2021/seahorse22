@@ -657,6 +657,10 @@ select {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
 }
+.mx-12 {
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -729,6 +733,9 @@ select {
 .ml-5 {
   margin-left: 1.25rem;
 }
+.mb-12 {
+  margin-bottom: 3rem;
+}
 .block {
   display: block;
 }
@@ -780,6 +787,24 @@ select {
 .h-screen {
   height: 100vh;
 }
+.h-24 {
+  height: 6rem;
+}
+.h-2 {
+  height: 0.5rem;
+}
+.h-28 {
+  height: 7rem;
+}
+.h-3 {
+  height: 0.75rem;
+}
+.h-36 {
+  height: 9rem;
+}
+.h-40 {
+  height: 10rem;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -826,6 +851,9 @@ select {
 }
 .w-auto {
   width: auto;
+}
+.w-36 {
+  width: 9rem;
 }
 .max-w-sm {
   max-width: 24rem;
@@ -1067,20 +1095,14 @@ select {
 .to-green-500 {
   --tw-gradient-to: #22c55e;
 }
-.to-yellow-100 {
-  --tw-gradient-to: #fef9c3;
+.to-blue-300 {
+  --tw-gradient-to: #93c5fd;
 }
 .to-blue-500 {
   --tw-gradient-to: #3b82f6;
 }
 .to-gray-900 {
   --tw-gradient-to: #111827;
-}
-.to-blue-100 {
-  --tw-gradient-to: #dbeafe;
-}
-.to-blue-300 {
-  --tw-gradient-to: #93c5fd;
 }
 .bg-cover {
   background-size: cover;

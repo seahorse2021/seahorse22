@@ -52,11 +52,11 @@
             </tr>
         </table>
 
-        <button>更新</button>
+        <x-button class="mb-12">更新</x-button>
     </form>
     {{-- ------入力フォームここまで-------------- --}}
 
-    <button id="select_picture">サムネイル変更</button>
+    <x-button id="select_picture">サムネイル変更</x-button>
 
     <div id="thumbnail_view">
         <p>一覧画面に表示する画像を選択してください</p>
@@ -70,7 +70,7 @@
         @endforeach
     </div>
 
-    <button id="delete_picture">写真を削除</button>
+    <x-button id="delete_picture">写真を削除</x-button>
 
     <div id="delete_view">
 
@@ -90,7 +90,7 @@
 
 
     {{-- 戻るボタン --}}
-    <a href="{{ route('log.index') }}">back</a>
+    <a href="{{ route('log.index') }}"><x-button>back</x-button></a>
 
     <!-- jquery読み込み -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
