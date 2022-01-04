@@ -27,8 +27,7 @@
             </tr>
 
             {{-- ダイブ本数 ランクProの場合は表示しない--}}
-            @if($profile->card_rank === 'Pro')
-            @else
+            @if($profile->card_rank !== 'Pro')
                 <tr class="flex flex-col">
                     <td>DIVE COUNT:</td>
                     <td><b class="text-3xl">{{ $profile->dive_count }}</b></td>

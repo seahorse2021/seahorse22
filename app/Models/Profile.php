@@ -15,6 +15,13 @@ class Profile extends Model
         'updated_at',
     ];
 
+
+    public static function getAllOrderByDiveCount()
+    {
+        //selfは Profileモデルのこと,orderBy()はSQLと同じ
+        return self::orderBy('dive_count', 'desc')->get();
+    }
+
     //Userモデルのリレーション（userモデルに属する）
     //$profile->user
     public function user()

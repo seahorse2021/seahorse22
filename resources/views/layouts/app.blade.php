@@ -13,11 +13,14 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+        <!-- fabicon -->
+        <link rel="shortcut icon" type="image/x-icon"  href="{{ asset('/favicon.ico') }}">
+
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="flex flex-col justify-between bg-gradient-to-br from-teal-400 via-blue-500 to-gray-900">
+        <div class="flex flex-col min-h-screen justify-between bg-gradient-to-br from-teal-400 via-blue-500 to-gray-900">
             @include('layouts.navigation')
 
             <!-- Page Heading -->

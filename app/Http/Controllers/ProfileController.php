@@ -24,6 +24,8 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //メンバー一覧を表示する関数
     public function index()
     {
         //$profiles = Profile::all(); 全て取得
@@ -48,6 +50,8 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    //プロフィール登録画面を表示する
     public function create()
     {
         //profile.createを表示
@@ -60,6 +64,8 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+     //プロフィール登録の関数
     public function store(Request $request)
     {
         //dd($request);
@@ -110,12 +116,12 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //プロフィール写真変更ページを表示する
     public function edit($id)
     {
-        //写真変更ページを表示する
         $profile = Profile::find($id);
         return view('profile.edit', ['profile' => $profile]);
-
     }
 
     /**
@@ -170,4 +176,16 @@ class ProfileController extends Controller
         //
 
     }
+
+    public function ranking()
+    {
+        //関数実行、取得した情報を$profilesに代入
+        $profiles = Profile::getAllOrderByDiveCount();
+
+        //profile.rankingに取得した$profilesを渡す
+        return view('profile.ranking', [
+            'profiles' => $profiles
+        ]);
+    }
+
 }

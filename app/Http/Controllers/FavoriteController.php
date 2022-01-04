@@ -38,6 +38,8 @@ class FavoriteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    //いいね登録の関数
     public function store(Log $log)
     {
         //中間テーブルへの追加
@@ -86,6 +88,8 @@ class FavoriteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    //いいね解除の関数
     public function destroy(Log $log)
     {
         //中間テーブルからの削除

@@ -11,15 +11,9 @@
     {{-- ---------写真表示部分---------------- --}}
 <div class="flex justify-center">
     <div class="px-2 mx-2 my-4 rounded-lg shadow-lg bg-white max-w-sm w-full">
-        <h1 class="font-bold text-center text-lg mt-2">{{ $log->dive_site }}</h1>
-    @foreach ($log->pictures as $picture)
-    <img src="{{ Storage::url($picture->picture) }}" class="mt-2  rounded-lg object-cover">
-    @endforeach
-
-    {{-- ---------写真表示部分ここまで---------------- --}}
-
+        <!-- <h1 class="font-bold text-center text-lg mt-2">{{ $log->dive_site }}</h1> -->
     {{-- -------ログの詳細表示部分------------ --}}
-    <section class="flex flex-col items-center justify-center">
+    <section class="flex flex-col mt-4 items-center justify-center">
         <p>date:<b>{{ $log->date }}</b></p>
         <p>dive site:<b>{{ $log->dive_site }}</b></p>
         <p>temp:<b>{{ $log->temp }}℃</b></p>
@@ -29,6 +23,11 @@
         <p><b>{!! nl2br(e($log->message)) !!}</b></p>
     </section>
     {{-- ------ログの詳細表示部分ここまで----- --}}
+    @foreach ($log->pictures as $picture)
+    <img src="{{ Storage::url($picture->picture) }}" class="mt-2  rounded-lg object-cover">
+    @endforeach
+
+    {{-- ---------写真表示部分ここまで---------------- --}}
 
     <div class="flex justify-end my-2">
         {{-- ------いいねボタン表示部分------------ --}}
@@ -52,7 +51,7 @@
         <!-- favorite ボタン -->
         <form action="{{ route('favorites',$log) }}" method="POST" class="text-left">
             @csrf
-            <button type="submit" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-black py-1 px-2 focus:outline-none focus:shadow-outline">
+            <button type="submit" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-gray-500 py-1 px-2 focus:outline-none focus:shadow-outline">
                 <svg class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="black">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
@@ -135,7 +134,7 @@
     {{-- -------投稿コメント表示場所ここまで--------- --}}
 
     {{-- ログ一覧に戻るボタン --}}
-    <a href="{{ route('log.index') }}">back</a>
+    <a href="{{ route('log.index') }}">＜back</a>
   </div>
 </div>
 

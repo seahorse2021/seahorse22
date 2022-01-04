@@ -10,9 +10,11 @@
     {{-- ------新規ログの入力画面------- --}}
 
     {{-- ------入力フォーム-------------- --}}
+    <div class="flex justify-center">
+    <div class="px-2 mx-2 my-4 rounded-lg shadow-lg bg-white max-w-sm w-full">
     <form action="{{ route('log.store') }}" method="POST">
         @csrf
-        <table>
+        <table class="mt-2">
             <tr>
                 {{-- 日付 --}}
                 <th>date</th>
@@ -58,15 +60,17 @@
         </table>
 
         {{-- 1ダイブのみに切り替えるチェックボックス --}}
-        <label><input type="checkbox" id="one_dive">1ダイブのみ</label>
-
-
-
-        <button>登録</button>
+<div class="flex flex-col justify-center items-center">
+    <label><input type="checkbox" id="one_dive">1ダイブのみ</label>
+    <x-button class="my-3">登録</x-button>
+</div>
     </form>
 
     {{-- ログ一覧に戻るボタン --}}
-    <a href="{{ route('log.index') }}">back</a>
+    <!-- <a href="{{ route('log.index') }}">back</a> -->
+
+    </div>
+</div>
 
     {{-- ------入力フォームここまで-------------- --}}
 
@@ -87,6 +91,4 @@
         })
 
     </script>
-
-
 </x-app-layout>
