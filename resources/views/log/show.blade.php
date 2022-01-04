@@ -108,10 +108,12 @@
     {{-- -------コメント入力欄ここまで------ --}}
 
     {{-- -------投稿コメント表示場所--------- --}}
+
     <div class="mt-5">
         {{-- 繰り返し処理でリストを表示 $log->commetnsで取得可能--}}
         {{-- comments()とすることで条件の指定が可能 --}}
         @foreach ($log->comments()->latest()->get() as $comment)
+        <!-- <hr> -->
         <div class="flex"><img src="{{ Storage::url( $comment->user->profile->profile_image) }}" class="rounded-full h-8 w-8"> {{ $comment->user->name }}</div>
         <div class="mx-auto w-full text-center "> {!!  nl2br(e($comment->comment)) !!}</div>
 

@@ -2,16 +2,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Create') }}
+        {{ __('image change') }}
         </h2>
     </x-slot>
 {{-- ヘッダー要素・コンポーネント ⏫⏫--}}
 
 {{-- -----プロフィールの写真登録----- --}}
 
-<h1>プロフィール画像変更</h1>
-{{-- プロフィール詳細画面に戻る --}}
-<a href="{{ route('profile.show',Auth::user()->id) }}">back</a>
+
 
         <div>
             {{-- 入力フォーム --}}
@@ -19,11 +17,11 @@
                 @method('patch')
                 @csrf
                 {{-- プレビュー表示場所 --}}
-                <img src="{{ Storage::url($profile->profile_image) }}" id="demo_img" class="rounded-full h-48 w-48 object-cover" >
+                <img src="{{ Storage::url($profile->profile_image) }}" id="demo_img" class="rounded-full h-48 w-48 object-cover mb-12" >
                 {{-- ファイル選択欄 --}}
                 <input type="file" name="profile_image" id="profile_image">
                 {{-- 変更ボタン --}}
-                <button>変更</button>
+                <x-button>変更</x-button>
             </form>
             {{-- 入力フォームここまで --}}
         </div>
