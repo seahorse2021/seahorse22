@@ -54,6 +54,11 @@
                 </x-button>
             </div>
             <hr class="my-3">
+            <div class="w-fit mx-auto">
+                <x-button class="w-60 mx-auto flex">
+                        <a href="{{ route('register') }}" class="mx-auto text-sm text-white-700 dark:text-gray-500">新規登録</a>
+                </x-button>
+            </div>
             <!-- <p>SNS ログイン</p> -->
             <div class="w-fit flex flex-col justify-center mx-auto ">
                 <a href="/login/google" class="text-center w-60 mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-auto ">
@@ -72,11 +77,6 @@
 
 
         </form>
-        <div class="w-fit mx-auto">
-             <x-button class="w-60 mx-auto flex">
-                    <a href="{{ route('register') }}" class="mx-auto text-sm text-white-700 dark:text-gray-500">新規登録</a>
-            </x-button>
-        </div>
 
         <!-- <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a> -->
     </x-auth-card>
