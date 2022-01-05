@@ -13,13 +13,13 @@
     <div class="px-2 mx-2 my-4 rounded-lg shadow-lg bg-white max-w-sm w-full">
         <!-- <h1 class="font-bold text-center text-lg mt-2">{{ $log->dive_site }}</h1> -->
     {{-- -------ログの詳細表示部分------------ --}}
-    <section class="flex flex-col mt-4 items-center justify-center">
+    <section class="flex flex-col mt-4 ">
         <p>date:<b>{{ $log->date }}</b></p>
         <p>dive site:<b>{{ $log->dive_site }}</b></p>
         <p>temp:<b>{{ $log->temp }}℃</b></p>
         <p>first dive time:<b>{{ $log->dive_time }}min</b></p>
-        <p>sesond dive time:<b>{{ $log->dive_time2 }}min</b></p>
-        <p>message</p>
+        <p class="mb-12">sesond dive time:<b>{{ $log->dive_time2 }}min</b></p>
+
         <p><b>{!! nl2br(e($log->message)) !!}</b></p>
     </section>
     {{-- ------ログの詳細表示部分ここまで----- --}}
@@ -115,7 +115,7 @@
         @foreach ($log->comments()->latest()->get() as $comment)
         <!-- <hr> -->
         <div class="flex"><img src="{{ Storage::url( $comment->user->profile->profile_image) }}" class="rounded-full h-8 w-8"> {{ $comment->user->name }}</div>
-        <div class="mx-auto w-full text-center "> {!!  nl2br(e($comment->comment)) !!}</div>
+        <div class="mx-auto w-full  mb-4"> {!!  nl2br(e($comment->comment)) !!}</div>
 
         {{-- もしlogのuser_idとログイン中のユーザーのidが一致したら削除ボタンを表示 --}}
         @if ($comment->user_id === Auth::user()->id)
