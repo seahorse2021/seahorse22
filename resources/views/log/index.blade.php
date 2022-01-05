@@ -17,8 +17,9 @@
     {{-- -----一覧表示部分--------- --}}
 
     @foreach ($logs as $log)
+<div class="w-full flex flex-col items-center">
     <a href="{{ route('log.show',$log->id) }}">
-    <div class="h-40 flex rounded-lg overflow-hidden border  lg:w-4/12 md:w-4/12 bg-white mx-3 md:mx-0 lg:mx-0 my-5">
+    <div class="h-40 w-80 flex rounded-lg overflow-hidden border  lg:w-80 md:w-80 bg-white mx-3 md:mx-0 lg:mx-0 my-5">
         <div class="w-full flex flex-col justify-between p-4">
             <div class="flex">
                 <div class="rounded-full h-8 w-8 bg-gray-500 flex items-center justify-center overflow-hidden">
@@ -52,6 +53,8 @@
     </div>
     </a>
     @endforeach
+
+</div>
 
 
     {{-- -----一覧表示部分--------- --}}
